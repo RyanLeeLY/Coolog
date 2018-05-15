@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Coolog_Example' do
+  pod 'Coolog', :path => '../'
+
+  target 'Coolog_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
