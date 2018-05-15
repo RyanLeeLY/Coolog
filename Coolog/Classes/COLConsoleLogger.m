@@ -7,12 +7,16 @@
 
 #import "COLConsoleLogger.h"
 #import <PocketSocket/PSWebSocketServer.h>
+#import <PocketSocket/PSWebSocket.h>
 
 @interface COLConsoleLogger () <PSWebSocketServerDelegate>
 @property (strong, nonatomic) PSWebSocketServer *server;
+@property (copy, nonatomic) NSMutableArray<PSWebSocket *> *clients;
 @end
 
 @implementation COLConsoleLogger
+@synthesize formatterClass = _formatterClass;
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -21,6 +25,12 @@
         [_server start];
     }
     return self;
+}
+
+- (void)log:(NSString *)logString {
+    [self.clients enumerateObjectsUsingBlock:^(PSWebSocket * _Nonnull client, NSUInteger idx, BOOL * _Nonnull stop) {
+        [client send:logString];
+    }];
 }
 
 #pragma mark - PSWebSocketServerDelegate
@@ -37,8 +47,10 @@
 }
 
 - (BOOL)server:(PSWebSocketServer *)server acceptWebSocketWithRequest:(NSURLRequest *)request {
-    NSLog(@"Server should accept request: %@", request);
-    return YES;
+    if ([request.URL.path isEqualToString:@"/coolog"]) {
+        return YES;
+    }
+    return NO;
 }
 
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
@@ -46,14 +58,22 @@
 }
 
 - (void)server:(PSWebSocketServer *)server webSocketDidOpen:(PSWebSocket *)webSocket {
-    NSLog(@"Server websocket did open");
+    [self.clients addObject:webSocket];
 }
 
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
-    NSLog(@"Server websocket did close with code: %@, reason: %@, wasClean: %@", @(code), reason, @(wasClean));
+    [self.clients removeObject:webSocket];
 }
 
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didFailWithError:(NSError *)error {
-    NSLog(@"Server websocket did fail with error: %@", error);
+    [self.clients removeObject:webSocket];
+}
+
+#pragma mark - getter
+- (NSMutableArray<PSWebSocket *> *)clients {
+    if (!_clients) {
+        _clients = [NSMutableArray array];
+    }
+    return _clients;
 }
 @end

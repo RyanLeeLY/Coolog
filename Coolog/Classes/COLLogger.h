@@ -7,6 +7,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface COLLogger : NSObject
+@class COLLogFormatter;
 
+@protocol COLLogger <NSObject>
+@property (strong, nonatomic) Class formatterClass;
+
+- (void)log:(NSString *)logString;
 @end

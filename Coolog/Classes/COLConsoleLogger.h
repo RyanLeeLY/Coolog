@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "COLLogger.h"
 
-@interface COLConsoleLogger : NSObject
-
+@interface COLConsoleLogger : NSObject <COLLogger>
 @end

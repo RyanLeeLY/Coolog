@@ -7,10 +7,10 @@
 //
 
 #import "COLViewController.h"
-#import <Coolog/COLConsoleLogger.h>
+#import <Coolog/Coolog.h>
 
 @interface COLViewController ()
-
+@property (strong, nonatomic) COLEngine *logEngine;
 @end
 
 @implementation COLViewController
@@ -18,13 +18,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    COLConsoleLogger *logger = [[COLConsoleLogger alloc] init];
+    _logEngine = [[COLEngine alloc] init];
+    [_logEngine addLogger:[[COLALSLogger alloc] init]];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)buttonOnTapped:(UIButton *)sender {
+    [self.logEngine logWithTag:@"tag" type:COLLogTypeInfo message:[@[@"value", @"value"] description] date:[NSDate date] thread:[NSThread currentThread]];
 }
-
 @end
