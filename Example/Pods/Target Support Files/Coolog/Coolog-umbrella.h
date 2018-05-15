@@ -10,7 +10,11 @@
 #endif
 #endif
 
+#import "COLConsoleLogger.h"
 #import "COLEngine.h"
+#import "COLFileLogger.h"
+#import "COLLogFormat.h"
+#import "COLLogger.h"
 
 FOUNDATION_EXPORT double CoologVersionNumber;
 FOUNDATION_EXPORT const unsigned char CoologVersionString[];

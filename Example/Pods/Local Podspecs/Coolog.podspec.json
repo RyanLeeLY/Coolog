@@ -18,5 +18,10 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "Coolog/Classes/**/*"
+  "source_files": "Coolog/Classes/**/*",
+  "dependencies": {
+    "PocketSocket": [
+
+    ]
+  }
 }
