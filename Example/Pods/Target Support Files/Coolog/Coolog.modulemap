@@ -1,0 +1,6 @@
+framework module Coolog {
+  umbrella header "Coolog-umbrella.h"
+
+  export *
+  module * { export * }
+}
