@@ -1,4 +1,4 @@
-use_frameworks!
+#use_frameworks!
 
 target 'Coolog_Example' do
   pod 'Coolog', :path => '../'

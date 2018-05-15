@@ -1,7 +1,8 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Coolog" "${PODS_CONFIGURATION_BUILD_DIR}/PocketSocket"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "${PODS_CONFIGURATION_BUILD_DIR}/Coolog/Coolog.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/PocketSocket/PocketSocket.framework/Headers"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Coolog" "${PODS_ROOT}/Headers/Public/PocketSocket"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Coolog" "${PODS_CONFIGURATION_BUILD_DIR}/PocketSocket"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Coolog" -isystem "${PODS_ROOT}/Headers/Public/PocketSocket"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"system" -l"z" -framework "CFNetwork" -framework "Foundation" -framework "Security"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

@@ -7,6 +7,7 @@
 //
 
 #import "COLViewController.h"
+#import <Coolog/COLConsoleLogger.h>
 
 @interface COLViewController ()
 
@@ -17,7 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    COLConsoleLogger *logger = [[COLConsoleLogger alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
