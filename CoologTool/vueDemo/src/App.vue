@@ -12,7 +12,7 @@
                 :index="index"
                 :height="item.height"
                 :content="item.content"
-                :color="item.color"> 
+                :textStyle="item.textStyle"> 
               </item>
           </virtual-list>
         </div>
@@ -41,7 +41,7 @@ export default {
 
   data () {
     return {
-        items: new Array({height: 40, content: 'Coolog Start...'}),
+        items: new Array({height: 40, content: 'Coolog', textStyle:'color:#1E90FF;font-size:26px'}),
         ws: null,
         totalHeight: 40,
         scrolling: false,
@@ -82,7 +82,7 @@ export default {
         let itm = {
           height: rowHeight,
           content: evt.data,
-          color: textColor
+          textStyle: 'color:'+textColor
         };
         this.totalHeight += rowHeight;
         this.items.push(itm);
@@ -92,7 +92,7 @@ export default {
           setTimeout(() => {
             this.$refs.vsl.setScrollTop(this.totalHeight);
             this.scrolling = false;
-          }, 0);
+          }, 100);
         }
       };
     },

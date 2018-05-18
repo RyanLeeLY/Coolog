@@ -14,17 +14,22 @@ typedef NS_ENUM(NSUInteger, COLLogFormatType) {
 };
 
 typedef NS_ENUM(NSUInteger, COLLogType) {
-    COLLogTypeDebug = 0,
-    COLLogTypeDefault,
-    COLLogTypeInfo,
+    COLLogTypeError = 0,
     COLLogTypeWarning,
-    COLLogTypeError,
+    COLLogTypeInfo,
+    COLLogTypeDefault,
+    COLLogTypeDebug,
 };
 
 @protocol COLFormatable <NSObject>
-- (NSString *)completeLogWithTag:(NSString *)tag type:(COLLogType)type message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread;
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread;
 @end
 
 @interface COLLogFormatter : NSObject <COLFormatable>
++ (instancetype)formatterWithType:(COLLogFormatType)type;
++ (instancetype)ALSFormatter;
++ (instancetype)ConsoleFormatter;
++ (instancetype)FileFormatter;
+
 - (instancetype)initWithType:(COLLogFormatType)type;
 @end

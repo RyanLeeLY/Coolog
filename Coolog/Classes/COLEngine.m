@@ -10,65 +10,40 @@
 #import "COLALSLogger.h"
 #import "COLConsoleLogger.h"
 #import "COLFileLogger.h"
+#import "COLLogger.h"
 
 @interface COLEngine ()
-@property (strong, nonatomic) NSMutableArray<id<COLLogger>> *loggers;
+@property (strong, nonatomic) NSMutableArray<COLLoggerDriver *> *drivers;
 
 @property (strong, nonatomic) NSCache *formatterCache;
 @end
 
 @implementation COLEngine
-- (void)addLogger:(id<COLLogger>)logger {
-    if ([logger isKindOfClass:[COLALSLogger class]]) {
-        logger.formatterClass = [[[COLLogFormatter alloc] initWithType:COLLogFormatTypeALS] class];
-    } else if ([logger isKindOfClass:[COLConsoleLogger class]]) {
-        logger.formatterClass = [[[COLLogFormatter alloc] initWithType:COLLogFormatTypeConsole] class];
-    } else if ([logger isKindOfClass:[COLFileLogger class]]) {
-        logger.formatterClass = [[[COLLogFormatter alloc] initWithType:COLLogFormatTypeFile] class];
-    }
-    [self.loggers addObject:logger];
+
+- (void)addDriver:(COLLoggerDriver *)driver {
+    [self.drivers addObject:driver];
 }
 
-- (void)removeLogger:(id<COLLogger>)logger {
-    [self.loggers removeObject:logger];
+- (void)removeDriver:(COLLoggerDriver *)driver {
+    [self.drivers removeObject:driver];
 }
 
-- (void)removeAllLogger {
-    [self.loggers removeAllObjects];
+- (void)removeAllDrivers {
+    [self.drivers removeAllObjects];
 }
 
-- (void)logWithTag:(NSString *)tag type:(COLLogType)type message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
-    [self.loggers enumerateObjectsUsingBlock:^(id<COLLogger>  _Nonnull logger, NSUInteger idx, BOOL * _Nonnull stop) {
-        COLLogFormatter *formatter = [self formatterWithLogger:logger];
-        if (formatter) {
-            [logger log:[formatter completeLogWithTag:tag type:type message:message date:date thread:thread]];
-        }
+- (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
+    [self.drivers enumerateObjectsUsingBlock:^(COLLoggerDriver * _Nonnull driver, NSUInteger idx, BOOL * _Nonnull stop) {
+        [driver logWithType:type tag:tag message:message date:date thread:thread];
     }];
 }
 
-#pragma mark - private
-- (COLLogFormatter *)formatterWithLogger:(id<COLLogger>)logger {
-    Class formatterCls = logger.formatterClass;
-    if (!formatterCls) {
-        return nil;
-    }
-    
-    NSString *className = NSStringFromClass(formatterCls);
-    if ([self.formatterCache objectForKey:className]) {
-        return [self.formatterCache objectForKey:className];
-    } else {
-        COLLogFormatter *formatter = [[formatterCls alloc] init];
-        [self.formatterCache setObject:formatter forKey:className];
-        return formatter;
-    }
-}
-
 #pragma mark - getter
-- (NSMutableArray<id<COLLogger>> *)loggers {
-    if (!_loggers) {
-        _loggers = [NSMutableArray array];
+- (NSMutableArray<COLLoggerDriver *> *)drivers {
+    if (!_drivers) {
+        _drivers = [NSMutableArray array];
     }
-    return _loggers;
+    return _drivers;
 }
 
 - (NSCache *)formatterCache {

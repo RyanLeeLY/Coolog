@@ -27,10 +27,26 @@ static NSString * COLLogFileFormatterString = @"[##TAG:%@##] [##TYPE:%@##] [##DA
 @end
 
 static inline NSArray * COLLogTypeStringArray() {
-    return @[@"Debug", @"Default", @"Info", @"Warning", @"Error"];
+    return @[@"Error", @"Warning", @"Info", @"Default", @"Debug"];
 }
 
 @implementation COLLogFormatter
++ (instancetype)formatterWithType:(COLLogFormatType)type {
+    return [[COLLogFormatter alloc] initWithType:type];
+}
+
++ (instancetype)ALSFormatter {
+    return [self formatterWithType:COLLogFormatTypeALS];
+}
+
++ (instancetype)ConsoleFormatter {
+    return [self formatterWithType:COLLogFormatTypeConsole];
+}
+
++ (instancetype)FileFormatter {
+    return [self formatterWithType:COLLogFormatTypeFile];
+}
+
 - (instancetype)initWithType:(COLLogFormatType)type {
     switch (type) {
         case COLLogFormatTypeALS:
@@ -54,7 +70,7 @@ static inline NSArray * COLLogTypeStringArray() {
     return self;
 }
 
-- (NSString *)completeLogWithTag:(NSString *)tag type:(COLLogType)type message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
     return nil;
 }
 
@@ -73,21 +89,20 @@ static inline NSArray * COLLogTypeStringArray() {
 @end
 
 @implementation COLLogALSFormatter
-- (NSString *)completeLogWithTag:(NSString *)tag type:(COLLogType)type message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
     NSString *dateString = [self.dateFormatter stringFromDate:date];
     return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, thread, message];
 }
 @end
 
 @implementation COLLogConsoleFormatter
-- (NSString *)completeLogWithTag:(NSString *)tag type:(COLLogType)type message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
-    NSString *dateString = [self.dateFormatter stringFromDate:date];
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {    NSString *dateString = [self.dateFormatter stringFromDate:date];
     return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, thread, message];
 }
 @end
 
 @implementation COLLogFileFormatter
-- (NSString *)completeLogWithTag:(NSString *)tag type:(COLLogType)type message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
     NSString *dateString = [self.dateFormatter stringFromDate:date];
     return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, thread, message];
 }

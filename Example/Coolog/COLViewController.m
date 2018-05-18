@@ -12,7 +12,9 @@
 @interface COLViewController ()
 @property (strong, nonatomic) COLEngine *logEngine;
 
-@property (strong, nonatomic) COLFileLogger *fileLogger;
+@property (strong, nonatomic) COLLoggerDriver *alsLoggerDriver;
+@property (strong, nonatomic) COLLoggerDriver *consoleLoggerDriver;
+@property (strong, nonatomic) COLLoggerDriver *fileLoggerDriver;
 @end
 
 @implementation COLViewController
@@ -21,10 +23,22 @@
 {
     [super viewDidLoad];
     _logEngine = [[COLEngine alloc] init];
-    _fileLogger = [COLFileLogger logger];
-    [_logEngine addLogger:self.fileLogger];
-//    [_logEngine addLogger:[COLALSLogger logger]];
-    [_logEngine addLogger:[COLConsoleLogger logger]];
+    
+    _alsLoggerDriver = [[COLLoggerDriver alloc] initWithLogger:[COLALSLogger logger]
+                                                     formatter:[COLLogFormatter ALSFormatter]
+                                                         level:COLLoggerLevelDebug];
+    
+    _consoleLoggerDriver = [[COLLoggerDriver alloc] initWithLogger:[COLConsoleLogger logger]
+                                                         formatter:[COLLogFormatter ConsoleFormatter]
+                                                             level:COLLoggerLevelWarning];
+    
+    _fileLoggerDriver = [[COLLoggerDriver alloc] initWithLogger:[COLFileLogger logger]
+                                                      formatter:[COLLogFormatter FileFormatter]
+                                                          level:COLLoggerLevelDebug];
+    
+//    [_logEngine addDriver:_alsLoggerDriver];
+    [_logEngine addDriver:_consoleLoggerDriver];
+//    [_logEngine addDriver:_fileLoggerDriver];
 }
 
 - (IBAction)buttonOnTapped:(UIButton *)sender {
@@ -35,7 +49,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self logTimeTakenToRunBlock:^{
             for (int i=0; i<1; i++) {
-                [self.logEngine logWithTag:@"tag" type:arc4random() % 5 message:[message description] date:[NSDate date] thread:[NSThread currentThread]];
+                [self.logEngine logWithType:arc4random()%5 tag:@"tag" message:[message description] date:[NSDate date] thread:[NSThread currentThread]];
             }
         } withPrefix:@"LOG in main thread"];
     });
@@ -48,7 +62,7 @@
 }
 
 - (IBAction)exportButtonOnTapped:(UIButton *)sender {
-    [self.fileLogger exportLog];
+    [(COLFileLogger *)self.fileLoggerDriver.logger exportLog];
 }
 
 - (void)logTimeTakenToRunBlock:(void(^)(void))block withPrefix:(NSString *)prefixString {

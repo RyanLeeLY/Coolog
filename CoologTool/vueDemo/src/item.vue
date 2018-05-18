@@ -10,7 +10,7 @@
             index: Number,
             height: Number,
             content: String,
-            color: Number
+            textStyle: String
         },
 
         computed: {
@@ -21,12 +21,6 @@
 
                 }
             },
-            
-            textStyle () {
-                return {
-                    'color': this.color
-                }
-            }
         }
     }
 </script>

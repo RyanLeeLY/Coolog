@@ -10,3 +10,4 @@
 #import "COLConsoleLogger.h"
 #import "COLFileLogger.h"
 #import "COLLogFormatter.h"
+#import "COLLoggerDriver.h"
