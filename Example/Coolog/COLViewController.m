@@ -43,7 +43,7 @@
 
 - (IBAction)buttonOnTapped:(UIButton *)sender {
     NSMutableArray *message = [NSMutableArray array];
-    for (int i=0; i<arc4random()%40; i++) {
+    for (int i=0; i<arc4random()%200; i++) {
         [message addObject:[NSString stringWithFormat:@"value%@", @(i)]];
     }
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -74,5 +74,9 @@
     unsigned int m = ((b-a) * 1000.0f); // convert from seconds to milliseconds
     
     NSLog(@"%@: %d ms", prefixString ? prefixString : @"Time taken", m);
+}
+
+- (IBAction)restartButtonOnTapped:(UIButton *)sender {
+    [(COLConsoleLogger *)self.consoleLoggerDriver.logger startRemoteLogger];
 }
 @end

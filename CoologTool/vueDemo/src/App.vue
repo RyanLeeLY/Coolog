@@ -62,9 +62,13 @@ export default {
       };
       this.$options.sockets.onclose = function() {
         this.isSocketOn = false;
+        this.closeLogWebSocket();
+        this.removeWebSocketListener();
       };
       this.$options.sockets.onerror = function(event) {
         this.isSocketOn = false;
+        this.closeLogWebSocket();
+        this.removeWebSocketListener();
       };
       this.$options.sockets.onmessage =  function(evt) {
         let rowHeight = 15 * Math.ceil((evt.data.length / 134)+1);
@@ -99,6 +103,13 @@ export default {
 
     closeLogWebSocket() {
       this.$disconnect();
+    },
+
+    removeWebSocketListener() {
+      delete this.$options.sockets.onopen;
+      delete this.$options.sockets.onclose;
+      delete this.$options.sockets.onerror;
+      delete this.$options.sockets.onmessage;
     }
   }
 }

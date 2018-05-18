@@ -92,12 +92,14 @@
 
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     dispatch_semaphore_wait(_clientsSemaphore, DISPATCH_TIME_FOREVER);
+    [webSocket close];
     [self.clients removeObject:webSocket];
     dispatch_semaphore_signal(_clientsSemaphore);
 }
 
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didFailWithError:(NSError *)error {
     dispatch_semaphore_wait(_clientsSemaphore, DISPATCH_TIME_FOREVER);
+    [webSocket close];
     [self.clients removeObject:webSocket];
     dispatch_semaphore_signal(_clientsSemaphore);
 }
@@ -118,6 +120,9 @@
     [self.server stop];
     
     dispatch_semaphore_wait(_clientsSemaphore, DISPATCH_TIME_FOREVER);
+    [self.clients enumerateObjectsUsingBlock:^(PSWebSocket * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj close];
+    }];
     [self.clients removeAllObjects];
     dispatch_semaphore_signal(_clientsSemaphore);
 }
