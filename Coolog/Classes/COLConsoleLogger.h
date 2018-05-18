@@ -9,4 +9,11 @@
 #import "COLLogger.h"
 
 @interface COLConsoleLogger : NSObject <COLLogger>
+@property (assign, atomic, readonly) BOOL remoteEnabled;
+
+- (instancetype)initWithPort:(NSUInteger)port NS_DESIGNATED_INITIALIZER;
+
+- (void)startRemoteLogger;
+
+- (void)stopRemoteLogger;
 @end

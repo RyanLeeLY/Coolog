@@ -246,6 +246,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = yao.li;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = L78C6AFK5E;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -466,12 +469,13 @@
 			baseConfigurationReference = 60E82D967EFCE5E0E85B5FF0 /* Pods-Coolog_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L78C6AFK5E;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Coolog/Coolog-Prefix.pch";
 				INFOPLIST_FILE = "Coolog/Coolog-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaoli.coolog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -482,12 +486,13 @@
 			baseConfigurationReference = 8E7D4C2366A9A61C50ABF976 /* Pods-Coolog_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L78C6AFK5E;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Coolog/Coolog-Prefix.pch";
 				INFOPLIST_FILE = "Coolog/Coolog-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yaoli.coolog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

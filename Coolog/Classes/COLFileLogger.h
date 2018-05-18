@@ -9,5 +9,29 @@
 #import "COLLogger.h"
 
 @interface COLFileLogger : NSObject <COLLogger>
+/**
+ Default value is 500.
+ L2Cache(NSString) -> L1Cache(NSData) -> File
+ */
+@property (assign, nonatomic) NSInteger maxL2CacheSize;
 
+/**
+ Default value is 5000.
+ L2Cache(NSString) -> L1Cache(NSData) -> File
+ */
+@property (assign, nonatomic) NSInteger maxL1CacheSize;
+
+/**
+ Bytes. Default value is 1024*1024*30 bytes.
+ */
+@property (assign, nonatomic) unsigned long long maxSingleFileSize;
+
+- (instancetype)initWithDirectoryRootPath:(NSString *)path NS_DESIGNATED_INITIALIZER;
+
+/**
+ All cached logs will be written to file immediately.
+
+ @return Log File's path
+ */
+- (NSString *)exportLatestLogFile;
 @end

@@ -10,6 +10,10 @@
 @implementation COLALSLogger
 @synthesize formatterClass = _formatterClass;
 
++ (instancetype)logger {
+    return [[COLALSLogger alloc] init];
+}
+
 - (void)log:(NSString *)logString {
     NSLog(@"%@", logString);
 }

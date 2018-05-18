@@ -28,11 +28,20 @@
                                     <action selector="buttonOnTapped:" destination="whP-gf-Uak" eventType="touchUpInside" id="bV7-jJ-MHp"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTy-GQ-hY9">
+                                <rect key="frame" x="165" y="381" width="46" height="30"/>
+                                <state key="normal" title="Export"/>
+                                <connections>
+                                    <action selector="exportButtonOnTapped:" destination="whP-gf-Uak" eventType="touchUpInside" id="WAh-WR-7bq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="CTy-GQ-hY9" firstAttribute="top" secondItem="7U3-AM-clI" secondAttribute="bottom" constant="32.5" id="8Tf-Kn-ut2"/>
                             <constraint firstItem="7U3-AM-clI" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="9iA-E3-GLm"/>
                             <constraint firstItem="7U3-AM-clI" firstAttribute="centerY" secondItem="TpU-gO-2f1" secondAttribute="centerY" id="kzl-yk-eH1"/>
+                            <constraint firstItem="CTy-GQ-hY9" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="wzg-8H-7xd"/>
                         </constraints>
                     </view>
                 </viewController>
