@@ -32,8 +32,15 @@
         _server = [PSWebSocketServer serverWithHost:nil port:port];
         _server.delegate = self;
         [self startRemoteLogger];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (instancetype)init {
@@ -102,6 +109,15 @@
     [webSocket close];
     [self.clients removeObject:webSocket];
     dispatch_semaphore_signal(_clientsSemaphore);
+}
+
+#pragma mark - notification
+- (void)applicationEnterForeground:(NSNotification *)notification {
+    [self startRemoteLogger];
+}
+
+- (void)applicationEnterBackground:(NSNotification *)notification {
+    [self stopRemoteLogger];
 }
 
 #pragma mark - getter & setter
