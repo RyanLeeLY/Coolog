@@ -26,12 +26,20 @@
  */
 @property (assign, nonatomic) unsigned long long maxSingleFileSize;
 
-- (instancetype)initWithDirectoryRootPath:(NSString *)path NS_DESIGNATED_INITIALIZER;
+
+/**
+ Init method.
+
+ @param path Path of log files
+ @param storagedDay Storaged days of log files. Default value is 1.
+ @return COLFileLogger instance
+ */
+- (instancetype)initWithDirectoryRootPath:(NSString *)path storagedDay:(NSUInteger)storagedDay NS_DESIGNATED_INITIALIZER;
 
 /**
  All cached logs will be written to file immediately.
 
- @return Log File's path
+ @return All the log File's paths
  */
-- (NSString *)exportLatestLogFile;
+- (NSArray<NSString *> *)exportLog;
 @end

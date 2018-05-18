@@ -18,6 +18,7 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
     dispatch_once_t _onceToken;
 }
 @property (copy, nonatomic) NSString *rootDirectoryPath;
+@property (assign, nonatomic) NSUInteger storagedDay;
 
 @property (strong, nonatomic) NSMutableArray *logL1Cache;
 @property (strong, nonatomic) NSMutableArray *logL2Cache;
@@ -37,16 +38,19 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
     return [[COLFileLogger alloc] init];
 }
 
-- (instancetype)initWithDirectoryRootPath:(NSString *)path {
+- (instancetype)initWithDirectoryRootPath:(NSString *)path
+                             storagedDay:(NSUInteger)storagedDay {
     self = [super init];
     if (self) {
         _rootDirectoryPath = path;
+        _storagedDay = storagedDay;
         _loggerFileQueue = dispatch_queue_create("com.coolog.loggerFileQueue", NULL);
         _loggerCacheQueue = dispatch_queue_create("com.coolog.loggerCacheQueue", NULL);
         _maxL2CacheSize = COLFileLoggerDefaultMaxL2CacheSize;
         _maxL1CacheSize = COLFileLoggerDefaultMaxL1CacheSize;
         _maxSingleFileSize = COLFileLoggerDefaultMaxSingleFileSize;
-        [self cleanExceptFileNames:COLFileLoggerFileNamesWithDateStrings([COLFileLogger recentDateStringsWithLength:1])];
+        
+        [self cleanExceptFileNames:COLFileLoggerFileNamesWithDateStrings([COLFileLogger recentDateStringsWithLength:_storagedDay])];
     }
     return self;
 }
@@ -54,7 +58,7 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 - (instancetype)init {
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *rootPath = [documentsDirectory stringByAppendingPathComponent:COLFileLoggerDefaultDirectoryPath];
-    return [self initWithDirectoryRootPath:rootPath];
+    return [self initWithDirectoryRootPath:rootPath storagedDay:1];
 }
 
 - (void)log:(NSString *)logString {
@@ -113,10 +117,22 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
     [self.fileHandleLock unlock];
 }
 
-- (NSString *)exportLatestLogFile {
+- (NSArray<NSString *> *)exportLog {
     [self triggerTransferCache];
     [self triggerWritingFile];
-    return [self.rootDirectoryPath stringByAppendingPathComponent:COLFileLoggerFileName()];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *allFileNames = COLFileLoggerFileNamesWithDateStrings([COLFileLogger recentDateStringsWithLength:self.storagedDay]);
+    NSMutableArray *filePaths = [NSMutableArray array];
+    [allFileNames enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *filePath = [self.rootDirectoryPath stringByAppendingPathComponent:obj];
+        BOOL isDirectory = NO;
+        BOOL rootPathExisted = [fileManager fileExistsAtPath:filePath isDirectory:&isDirectory];
+        if (rootPathExisted && !isDirectory) {
+            [filePaths addObject:filePath];
+        }
+    }];
+    return [filePaths copy];
 }
 
 #pragma mark - private

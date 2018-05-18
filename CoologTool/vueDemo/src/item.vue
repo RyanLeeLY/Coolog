@@ -1,6 +1,6 @@
 <template>
     <div class="item" :style="style">
-        <p class="content">{{ content }}</p>
+        <p class="content" :style="textStyle">{{ content }}</p>
     </div>
 </template>
 
@@ -10,7 +10,7 @@
             index: Number,
             height: Number,
             content: String,
-            // color: Number
+            color: Number
         },
 
         computed: {
@@ -18,6 +18,13 @@
                 return {
                     'height': this.height + 'px',
                     'line-height': this.height + 'px'
+
+                }
+            },
+            
+            textStyle () {
+                return {
+                    'color': this.color
                 }
             }
         }

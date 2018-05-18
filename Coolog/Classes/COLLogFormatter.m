@@ -27,7 +27,7 @@ static NSString * COLLogFileFormatterString = @"[##TAG:%@##] [##TYPE:%@##] [##DA
 @end
 
 static inline NSArray * COLLogTypeStringArray() {
-    return @[@"Default", @"Info", @"Debug", @"Error", @"Fault"];
+    return @[@"Debug", @"Default", @"Info", @"Warning", @"Error"];
 }
 
 @implementation COLLogFormatter

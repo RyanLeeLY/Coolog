@@ -14,11 +14,11 @@ typedef NS_ENUM(NSUInteger, COLLogFormatType) {
 };
 
 typedef NS_ENUM(NSUInteger, COLLogType) {
-    COLLogTypeDefault = 0,
+    COLLogTypeDebug = 0,
+    COLLogTypeDefault,
     COLLogTypeInfo,
-    COLLogTypeDebug,
+    COLLogTypeWarning,
     COLLogTypeError,
-    COLLogTypeFault,
 };
 
 @protocol COLFormatable <NSObject>

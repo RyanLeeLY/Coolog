@@ -34,21 +34,21 @@
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [self logTimeTakenToRunBlock:^{
-            for (int i=0; i<200; i++) {
-                [self.logEngine logWithTag:@"tag" type:COLLogTypeInfo message:[message description] date:[NSDate date] thread:[NSThread currentThread]];
+            for (int i=0; i<1; i++) {
+                [self.logEngine logWithTag:@"tag" type:arc4random() % 5 message:[message description] date:[NSDate date] thread:[NSThread currentThread]];
             }
         } withPrefix:@"LOG in main thread"];
     });
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        for (int i=0; i<200; i++) {
-            [self.logEngine logWithTag:@"tag" type:COLLogTypeInfo message:[@[@"value", @"value"] description] date:[NSDate date] thread:[NSThread currentThread]];
-        }
-    });
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        for (int i=0; i<200; i++) {
+//            [self.logEngine logWithTag:@"tag" type:COLLogTypeInfo message:[@[@"value", @"value"] description] date:[NSDate date] thread:[NSThread currentThread]];
+//        }
+//    });
 }
 
 - (IBAction)exportButtonOnTapped:(UIButton *)sender {
-    [self.fileLogger exportLatestLogFile];
+    [self.fileLogger exportLog];
 }
 
 - (void)logTimeTakenToRunBlock:(void(^)(void))block withPrefix:(NSString *)prefixString {

@@ -11,7 +11,8 @@
                 :key="index"
                 :index="index"
                 :height="item.height"
-                :content="item.content"> 
+                :content="item.content"
+                :color="item.color"> 
               </item>
           </virtual-list>
         </div>
@@ -24,12 +25,15 @@ import virtualList from 'vue-virtual-scroll-list';
 import item from './item.vue';
 import VueNativeSock from 'vue-native-websocket'
 
-Vue.use(VueNativeSock, getQueryString("host"), { 
-        connectManually: true,
-        reconnection: true, 
-        reconnectionAttempts: 10,
-        reconnectionDelay: 5000,
-      });
+let url = getQueryString("host");
+if (url != null) {
+  Vue.use(VueNativeSock, getQueryString("host"), { 
+          connectManually: true,
+          reconnection: true, 
+          reconnectionAttempts: 10,
+          reconnectionDelay: 5000,
+        });
+}
 
 export default {
   name: 'app',
@@ -64,9 +68,21 @@ export default {
       };
       this.$options.sockets.onmessage =  function(evt) {
         let rowHeight = 15 * Math.ceil((evt.data.length / 134)+1);
+        let type = evt.data.match(/\[##TYPE:(\S*)##\]/)[1];
+        var textColor = '#000000';
+        if (type === 'Debug') {
+          textColor = '#696969';
+        } else if (type === 'Info') {
+          textColor = '#006400';
+        } else if (type === 'Warning') {
+          textColor = '#FF7F50';
+        } else if (type === 'Error') {
+          textColor = '#FF0000';
+        }
         let itm = {
           height: rowHeight,
           content: evt.data,
+          color: textColor
         };
         this.totalHeight += rowHeight;
         this.items.push(itm);
