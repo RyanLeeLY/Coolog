@@ -15,7 +15,7 @@ Coolog is a expandable and flexible log framework for iOS.
 * **Expandable** You can even customize your own logger and formatter, which are components of log-driver. Then your customized log-driver can also be added to log-engine. Do whatever you want in your customized logger.
 
 * **Browser Tool** Coolog provides a browser tool, which makes it easy to debug. You just need to open a computer with a browser to debug the program. This is really convenient.
-![BrowserTool](https://github.com/RyanLeeLY/Coolog/blob/master/browserTool.gif)
+![BrowserTool](https://raw.githubusercontent.com/RyanLeeLY/Coolog/master/browserTool.gif)
 
 ## Installation
 
