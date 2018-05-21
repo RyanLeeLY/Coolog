@@ -1,6 +1,6 @@
 # Coolog
 
-Coolog is a expandable log framework for iOS.
+Coolog is a expandable and flexible log framework for iOS.
 
 [![CI Status](https://img.shields.io/travis/yao.li/Coolog.svg?style=flat)](https://travis-ci.org/yao.li/Coolog)
 [![Version](https://img.shields.io/cocoapods/v/Coolog.svg?style=flat)](https://cocoapods.org/pods/Coolog)
