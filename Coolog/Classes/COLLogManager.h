@@ -9,6 +9,8 @@
 #import "COLLoggerDriver.h"
 
 @interface COLLogManager : NSObject
+@property (strong, nonatomic, readonly) COLEngine *logEngine;
+
 @property (assign, nonatomic) COLLogLevel level;
 
 + (instancetype)sharedInstance;
