@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2508526120B2D11600C3AACE /* MyLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2508526020B2D11600C3AACE /* MyLogger.m */; };
+		2508526420B2D2F200C3AACE /* MyLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2508526320B2D2F200C3AACE /* MyLogFormatter.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -38,6 +40,10 @@
 
 /* Begin PBXFileReference section */
 		03D5BFBB1D57A1916E655C3F /* libPods-Coolog_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Coolog_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2508525F20B2D11600C3AACE /* MyLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyLogger.h; sourceTree = "<group>"; };
+		2508526020B2D11600C3AACE /* MyLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyLogger.m; sourceTree = "<group>"; };
+		2508526220B2D2F200C3AACE /* MyLogFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyLogFormatter.h; sourceTree = "<group>"; };
+		2508526320B2D2F200C3AACE /* MyLogFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyLogFormatter.m; sourceTree = "<group>"; };
 		46DC7F5C9AD63474E3B2F4F9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* Coolog_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coolog_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -151,6 +157,10 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				2508525F20B2D11600C3AACE /* MyLogger.h */,
+				2508526020B2D11600C3AACE /* MyLogger.m */,
+				2508526220B2D2F200C3AACE /* MyLogFormatter.h */,
+				2508526320B2D2F200C3AACE /* MyLogFormatter.m */,
 			);
 			name = "Example for Coolog";
 			path = Coolog;
@@ -342,6 +352,8 @@
 				6003F59E195388D20070C39A /* COLAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* COLViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				2508526120B2D11600C3AACE /* MyLogger.m in Sources */,
+				2508526420B2D2F200C3AACE /* MyLogFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

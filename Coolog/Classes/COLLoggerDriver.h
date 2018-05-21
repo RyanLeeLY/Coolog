@@ -21,11 +21,11 @@ typedef NS_ENUM(NSUInteger, COLLogLevel) {
 
 @interface COLLoggerDriver : NSObject
 @property (strong, nonatomic) id<COLLogger> logger;
-@property (strong, nonatomic) COLLogFormatter *formatter;
+@property (strong, nonatomic) id<COLFormatable> formatter;
 @property (assign, nonatomic) COLLogLevel level;
 
 - (instancetype)initWithLogger:(id<COLLogger>)logger
-                     formatter:(COLLogFormatter *)formatter
+                     formatter:(id<COLFormatable>)formatter
                          level:(COLLogLevel)level NS_DESIGNATED_INITIALIZER;
 
 - (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread;

@@ -12,7 +12,7 @@
 
 @implementation COLLoggerDriver
 - (instancetype)initWithLogger:(id<COLLogger>)logger
-                     formatter:(COLLogFormatter *)formatter
+                     formatter:(id<COLFormatable>)formatter
                          level:(COLLogLevel)level {
     self = [super init];
     if (self) {

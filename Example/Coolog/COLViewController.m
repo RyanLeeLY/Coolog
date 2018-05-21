@@ -8,6 +8,8 @@
 
 #import "COLViewController.h"
 #import <Coolog/Coolog.h>
+#import "MyLogger.h"
+#import "MyLogFormatter.h"
 
 @interface COLViewController ()
 
@@ -18,6 +20,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    COLLoggerDriver *myDriver = [[COLLoggerDriver alloc] initWithLogger:[MyLogger logger]
+                                                              formatter:[[MyLogFormatter alloc] init]
+                                                                  level:COLLogLevelInfo];
+    [[COLLogManager sharedInstance].logEngine addDriver:myDriver];
 }
 
 - (IBAction)buttonOnTapped:(UIButton *)sender {
