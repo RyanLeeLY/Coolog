@@ -66,6 +66,8 @@ static inline NSArray * COLLogTypeStringArray() {
     self = [super init];
     if (self) {
         _tagStrings = COLLogTypeStringArray();
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
     }
     return self;
 }
@@ -76,15 +78,6 @@ static inline NSArray * COLLogTypeStringArray() {
 
 - (NSString *)typeStringWithType:(COLLogType)type {
     return self.tagStrings[type];
-}
-
-#pragma mark - getter
-- (NSDateFormatter *)dateFormatter {
-    if (!_dateFormatter) {
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-    }
-    return _dateFormatter;
 }
 @end
 

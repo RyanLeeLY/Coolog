@@ -6,6 +6,7 @@
 //
 
 #import "COLEngine.h"
+#import "COLLoggerDriver.h"
 #import "COLLogFormatter.h"
 #import "COLALSLogger.h"
 #import "COLConsoleLogger.h"

@@ -9,24 +9,24 @@
 #import "COLLogger.h"
 #import "COLLogFormatter.h"
 
-typedef NS_ENUM(NSUInteger, COLLoggerLevel) {
-    COLLoggerLevelOff = 0,
-    COLLoggerLevelError,
-    COLLoggerLevelWarning,
-    COLLoggerLevelInfo,
-    COLLoggerLevelDefault,
-    COLLoggerLevelDebug,
-    COLLoggerLevelAll,
+typedef NS_ENUM(NSUInteger, COLLogLevel) {
+    COLLogLevelOff = 0,
+    COLLogLevelError,
+    COLLogLevelWarning,
+    COLLogLevelInfo,
+    COLLogLevelDefault,
+    COLLogLevelDebug,
+    COLLogLevelAll,
 };
 
 @interface COLLoggerDriver : NSObject
 @property (strong, nonatomic) id<COLLogger> logger;
 @property (strong, nonatomic) COLLogFormatter *formatter;
-@property (assign, nonatomic) COLLoggerLevel level;
+@property (assign, nonatomic) COLLogLevel level;
 
 - (instancetype)initWithLogger:(id<COLLogger>)logger
                      formatter:(COLLogFormatter *)formatter
-                         level:(COLLoggerLevel)level NS_DESIGNATED_INITIALIZER;
+                         level:(COLLogLevel)level NS_DESIGNATED_INITIALIZER;
 
 - (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread;
 @end

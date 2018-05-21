@@ -10,7 +10,7 @@
 
 static const NSInteger COLFileLoggerDefaultMaxL2CacheSize = 500;
 static const NSInteger COLFileLoggerDefaultMaxL1CacheSize = 5000;
-static const NSInteger COLFileLoggerDefaultMaxSingleFileSize = 1024 * 1024 * 30;
+static const NSInteger COLFileLoggerDefaultMaxSingleFileSize = 1024 * 1024 * 100;
 static NSString * const COLFileLoggerDefaultDirectoryPath = @"coolog";
 static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 
@@ -26,9 +26,6 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 @property (strong, nonatomic) dispatch_queue_t loggerFileQueue;
 @property (strong, nonatomic) dispatch_queue_t loggerCacheQueue;
 @property (strong, nonatomic) NSLock *fileHandleLock;
-@property (strong, nonatomic) NSLock *cacheTransferLock;
-@property (strong, nonatomic) NSLock *logL1CacheLock;
-@property (strong, nonatomic) NSLock *logL2CacheLock;
 
 @property (strong, nonatomic) NSCondition *logL2Condition;
 @property (strong, nonatomic) NSCondition *logL1Condition;
@@ -56,9 +53,6 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
         _logL1Cache = [[NSMutableArray alloc] init];
         _logL2Cache = [[NSMutableArray alloc] init];
         _fileHandleLock = [[NSLock alloc] init];
-        _cacheTransferLock = [[NSLock alloc] init];
-        _logL1CacheLock = [[NSLock alloc] init];
-        _logL2CacheLock = [[NSLock alloc] init];
         _logL2Condition = [[NSCondition alloc] init];
         _logL1Condition = [[NSCondition alloc] init];
         

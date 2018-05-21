@@ -13,7 +13,7 @@
 @implementation COLLoggerDriver
 - (instancetype)initWithLogger:(id<COLLogger>)logger
                      formatter:(COLLogFormatter *)formatter
-                         level:(COLLoggerLevel)level {
+                         level:(COLLogLevel)level {
     self = [super init];
     if (self) {
         _logger = logger;
@@ -24,7 +24,7 @@
 }
 
 - (instancetype)init {
-    return [self initWithLogger:[COLALSLogger logger] formatter:[[COLLogFormatter alloc] initWithType:COLLogFormatTypeALS] level:COLLoggerLevelDefault];
+    return [self initWithLogger:[COLALSLogger logger] formatter:[[COLLogFormatter alloc] initWithType:COLLogFormatTypeALS] level:COLLogLevelDefault];
 }
 
 - (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {

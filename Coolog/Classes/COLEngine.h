@@ -6,8 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "COLLoggerDriver.h"
 #import "COLLogFormatter.h"
+
+@class COLLoggerDriver;
 
 @interface COLEngine : NSObject
 - (void)addDriver:(COLLoggerDriver *)driver;

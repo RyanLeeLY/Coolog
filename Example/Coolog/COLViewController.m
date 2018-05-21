@@ -10,11 +10,7 @@
 #import <Coolog/Coolog.h>
 
 @interface COLViewController ()
-@property (strong, nonatomic) COLEngine *logEngine;
 
-@property (strong, nonatomic) COLLoggerDriver *alsLoggerDriver;
-@property (strong, nonatomic) COLLoggerDriver *consoleLoggerDriver;
-@property (strong, nonatomic) COLLoggerDriver *fileLoggerDriver;
 @end
 
 @implementation COLViewController
@@ -22,23 +18,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _logEngine = [[COLEngine alloc] init];
-    
-    _alsLoggerDriver = [[COLLoggerDriver alloc] initWithLogger:[COLALSLogger logger]
-                                                     formatter:[COLLogFormatter ALSFormatter]
-                                                         level:COLLoggerLevelDebug];
-    
-    _consoleLoggerDriver = [[COLLoggerDriver alloc] initWithLogger:[COLConsoleLogger logger]
-                                                         formatter:[COLLogFormatter ConsoleFormatter]
-                                                             level:COLLoggerLevelDebug];
-    
-    _fileLoggerDriver = [[COLLoggerDriver alloc] initWithLogger:[COLFileLogger logger]
-                                                      formatter:[COLLogFormatter FileFormatter]
-                                                          level:COLLoggerLevelDebug];
-    
-//    [_logEngine addDriver:_alsLoggerDriver];
-//    [_logEngine addDriver:_consoleLoggerDriver];
-    [_logEngine addDriver:_fileLoggerDriver];
+    [[COLLogManager sharedInstance] setup];
+    [[COLLogManager sharedInstance] enableFileLog];
+    [[COLLogManager sharedInstance] enableConsoleLog];
+#ifndef DEBUG
+    [COLLogManager sharedInstance].level = COLLogLevelInfo;
+#endif
 }
 
 - (IBAction)buttonOnTapped:(UIButton *)sender {
@@ -46,24 +31,29 @@
     for (int i=0; i<arc4random()%200; i++) {
         [message addObject:[NSString stringWithFormat:@"value%@", @(i)]];
     }
-//    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self logTimeTakenToRunBlock:^{
-            for (int i=0; i<10000; i++) {
-                [self.logEngine logWithType:arc4random()%5 tag:@"tag" message:@"testtesttesttesttesttesttest" date:[NSDate date] thread:[NSThread currentThread]];
+            for (int i=0; i<1; i++) {
+                CLogError(@"tag", @"%@", [message description]);
             }
         } withPrefix:@"LOG in main thread"];
-//    });
-    
+    });
+
+    for (int i=0; i<2; i++) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            CLogInfo(@"tag", @"%@", [message description]);
+        });
+    }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        for (int i=0; i<10000; i++) {
-            [self.logEngine logWithType:arc4random()%5 tag:@"tag" message:@"testtesttesttesttesttesttest" date:[NSDate date] thread:[NSThread currentThread]];
+        for (int i=0; i<1; i++) {
+            CLogDebug(@"tag", @"%@", [message description]);
         }
     });
 }
 
 - (IBAction)exportButtonOnTapped:(UIButton *)sender {
-    [(COLFileLogger *)self.fileLoggerDriver.logger exportLog];
+    [[COLLogManager sharedInstance] exportLog];
 }
 
 - (void)logTimeTakenToRunBlock:(void(^)(void))block withPrefix:(NSString *)prefixString {
@@ -78,6 +68,6 @@
 }
 
 - (IBAction)restartButtonOnTapped:(UIButton *)sender {
-    [(COLConsoleLogger *)self.consoleLoggerDriver.logger startRemoteLogger];
+    [[COLLogManager sharedInstance] enableRemoteConsole];
 }
 @end
