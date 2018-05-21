@@ -18,12 +18,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[COLLogManager sharedInstance] setup];
-    [[COLLogManager sharedInstance] enableFileLog];
-    [[COLLogManager sharedInstance] enableConsoleLog];
-#ifndef DEBUG
-    [COLLogManager sharedInstance].level = COLLogLevelInfo;
-#endif
 }
 
 - (IBAction)buttonOnTapped:(UIButton *)sender {
@@ -33,7 +27,7 @@
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [self logTimeTakenToRunBlock:^{
-            for (int i=0; i<1; i++) {
+            for (int i=0; i<1000; i++) {
                 CLogError(@"tag", @"%@", [message description]);
             }
         } withPrefix:@"LOG in main thread"];

@@ -7,12 +7,19 @@
 //
 
 #import "COLAppDelegate.h"
+#import <Coolog/Coolog.h>
 
 @implementation COLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [[COLLogManager sharedInstance] setup];
+    [[COLLogManager sharedInstance] enableFileLog];
+    [[COLLogManager sharedInstance] enableConsoleLog];
+#ifndef DEBUG
+    [COLLogManager sharedInstance].level = COLLogLevelInfo;
+#endif
+    
     return YES;
 }
 
