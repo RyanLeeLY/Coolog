@@ -15,6 +15,7 @@ Coolog is a expandable and flexible log framework for iOS.
 * **Expandable** You can even customize your own logger and formatter, which are components of log-driver. Then your customized log-driver can also be added to log-engine. Do whatever you want in your customized logger.
 
 * **Browser Tool** Coolog provides a browser tool, which makes it easy to debug. You just need to open a computer with a browser to debug the program. This is really convenient.
+![BrowserTool](https://github.com/RyanLeeLY/Coolog/blob/master/browserTool.gif)
 
 ## Installation
 
@@ -30,10 +31,10 @@ pod 'Coolog'
 ### Setup
 
 ```objective-c
-    [[COLLogManager sharedInstance] setup];
+[[COLLogManager sharedInstance] setup];
     
-    [[COLLogManager sharedInstance] enableFileLog];  // open file log
-    [[COLLogManager sharedInstance] enableConsoleLog];  // open xcode console log
+[[COLLogManager sharedInstance] enableFileLog];  // open file log
+[[COLLogManager sharedInstance] enableConsoleLog];  // open xcode console log
     
 #ifdef DEBUG
     [COLLogManager sharedInstance].level = COLLogLevelAll;
@@ -45,16 +46,22 @@ pod 'Coolog'
 ### Log
 
 ```objective-c
-	CLogError(@"tag", @"%@", @"log content");
+CLogError(@"tag", @"%@", @"log content");
 	
-	CLogWarning(@"tag", @"%@", @"log content");
+CLogWarning(@"tag", @"%@", @"log content");
 	
-	CLogInfo(@"tag", @"%@", @"log content");
+CLogInfo(@"tag", @"%@", @"log content");
 	
-	CLogDefault(@"tag", @"%@", @"log content");
+CLogDefault(@"tag", @"%@", @"log content");
 	
-	CLogDebug(@"tag", @"%@", @"log content");
+CLogDebug(@"tag", @"%@", @"log content");
 ```
+
+### Browser Tool
+```objective-c
+[[COLLogManager sharedInstance] enableRemoteConsole];
+```
+Make sure your pc and your phone under the same wifi. Open your browser and visit [http://coolog.oss-cn-hangzhou.aliyuncs.com/index.html?host=ws://YourPhoneIPAddr:9001/coolog]
 
 ### Advanced
 
