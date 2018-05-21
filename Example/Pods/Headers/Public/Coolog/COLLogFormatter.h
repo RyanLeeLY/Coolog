@@ -1,0 +1,1 @@
+../../../../../Coolog/Classes/COLLogFormatter.h

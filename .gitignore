@@ -20,7 +20,6 @@ DerivedData
 *.ipa
 Example/Index
 Example/Build
-Example/Pods
 
 # Bundler
 .bundle
