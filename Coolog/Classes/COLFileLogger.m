@@ -29,6 +29,9 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 @property (strong, nonatomic) NSLock *cacheTransferLock;
 @property (strong, nonatomic) NSLock *logL1CacheLock;
 @property (strong, nonatomic) NSLock *logL2CacheLock;
+
+@property (strong, nonatomic) NSCondition *logL2Condition;
+@property (strong, nonatomic) NSCondition *logL1Condition;
 @end
 
 @implementation COLFileLogger
@@ -50,6 +53,23 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
         _maxL1CacheSize = COLFileLoggerDefaultMaxL1CacheSize;
         _maxSingleFileSize = COLFileLoggerDefaultMaxSingleFileSize;
         
+        _logL1Cache = [[NSMutableArray alloc] init];
+        _logL2Cache = [[NSMutableArray alloc] init];
+        _fileHandleLock = [[NSLock alloc] init];
+        _cacheTransferLock = [[NSLock alloc] init];
+        _logL1CacheLock = [[NSLock alloc] init];
+        _logL2CacheLock = [[NSLock alloc] init];
+        _logL2Condition = [[NSCondition alloc] init];
+        _logL1Condition = [[NSCondition alloc] init];
+        
+        dispatch_async(_loggerCacheQueue, ^{
+            [self transferCacheTask];
+        });
+        
+        dispatch_async(_loggerFileQueue, ^{
+            [self writingFileTask];
+        });
+
         [self cleanExceptFileNames:COLFileLoggerFileNamesWithDateStrings([COLFileLogger recentDateStringsWithLength:_storagedDay])];
     }
     return self;
@@ -62,41 +82,87 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 }
 
 - (void)log:(NSString *)logString {
-    [self.logL2CacheLock lock];
+    [self.logL2Condition lock];
     [self.logL2Cache addObject:logString];
     
-    if (self.logL2Cache.count > self.maxL2CacheSize) {
-        dispatch_async(self.loggerFileQueue, ^{
-            [self triggerTransferCache];
-        });
-    } else {
-        [self.logL2CacheLock unlock];
+    if (self.logL2Cache.count >= self.maxL2CacheSize) {
+        [self.logL2Condition signal];
+    }
+    [self.logL2Condition unlock];
+}
+
+- (void)transferCacheTask {
+    while (1) {
+        [self.logL2Condition lock];
+        
+        if (self.logL2Cache.count < self.maxL2CacheSize) {
+            [self.logL2Condition wait];
+        }
+        NSArray *savedLogs = [self.logL2Cache copy];
+        [self.logL2Cache removeAllObjects];
+        [self.logL2Condition unlock];
+        
+        [self.logL1Condition lock];
+        [savedLogs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.logL1Cache addObject:[[obj stringByAppendingString:@"\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        }];
+        
+        if (self.logL1Cache.count >= self.maxL1CacheSize) {
+            [self.logL1Condition signal];
+        }
+        [self.logL1Condition unlock];
     }
 }
 
 - (void)triggerTransferCache {
+    [self.logL2Condition lock];
+    
     NSArray *savedLogs = [self.logL2Cache copy];
     [self.logL2Cache removeAllObjects];
-    [self.logL2CacheLock unlock];
+    [self.logL2Condition unlock];
     
-    [self.logL1CacheLock lock];
+    [self.logL1Condition lock];
     [savedLogs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.logL1Cache addObject:[[obj stringByAppendingString:@"\n"] dataUsingEncoding:NSUTF8StringEncoding]];
     }];
-    
-    if (self.logL1Cache.count > self.maxL1CacheSize) {
-        dispatch_async(self.loggerFileQueue, ^{
-            [self triggerWritingFile];
-        });
-    } else {
-        [self.logL1CacheLock unlock];
+    [self.logL1Condition unlock];
+}
+
+- (void)writingFileTask {
+    while (1) {
+        [self.logL1Condition lock];
+        if (self.logL1Cache.count < self.maxL1CacheSize) {
+            [self.logL1Condition wait];
+        }
+        NSArray *savedLogDataArray = [self.logL1Cache copy];
+        [self.logL1Cache removeAllObjects];
+        [self.logL1Condition unlock];
+        
+        NSString *fileName = COLFileLoggerFileName();
+        [self.fileHandleLock lock];
+        NSFileHandle *fileHandle = [self fileHandleWithDirctoryPath:self.rootDirectoryPath fileName:fileName];
+        [fileHandle seekToEndOfFile];
+        
+        [savedLogDataArray enumerateObjectsUsingBlock:^(NSData * _Nonnull logData, NSUInteger idx, BOOL * _Nonnull stop) {
+            [fileHandle writeData:logData];
+        }];
+        
+        unsigned long long fsize = [fileHandle seekToEndOfFile];
+        [fileHandle closeFile];
+        
+        NSError *error = NULL;
+        if (fsize > self.maxSingleFileSize) {
+            [self moveLogFiletoTrash:fileName error:&error];
+        }
+        [self.fileHandleLock unlock];
     }
 }
 
 - (void)triggerWritingFile {
+    [self.logL1Condition lock];
     NSArray *savedLogDataArray = [self.logL1Cache copy];
     [self.logL1Cache removeAllObjects];
-    [self.logL1CacheLock unlock];
+    [self.logL1Condition unlock];
     
     NSString *fileName = COLFileLoggerFileName();
     [self.fileHandleLock lock];
@@ -214,45 +280,4 @@ static inline NSArray * COLFileLoggerFileNamesWithDateStrings(NSArray *dateStrin
 }
 
 #pragma mark - getter
-- (NSMutableArray *)logL1Cache {
-    if (!_logL1Cache) {
-        _logL1Cache = [[NSMutableArray alloc] init];
-    }
-    return _logL1Cache;
-}
-
-- (NSMutableArray *)logL2Cache {
-    if (!_logL2Cache) {
-        _logL2Cache = [[NSMutableArray alloc] init];
-    }
-    return _logL2Cache;
-}
-
-- (NSLock *)fileHandleLock {
-    if (!_fileHandleLock) {
-        _fileHandleLock = [[NSLock alloc] init];
-    }
-    return _fileHandleLock;
-}
-
-- (NSLock *)cacheTransferLock {
-    if (!_cacheTransferLock) {
-        _cacheTransferLock = [[NSLock alloc] init];
-    }
-    return _cacheTransferLock;
-}
-
-- (NSLock *)logL1CacheLock {
-    if (!_logL1CacheLock) {
-        _logL1CacheLock = [[NSLock alloc] init];
-    }
-    return _logL1CacheLock;
-}
-
-- (NSLock *)logL2CacheLock {
-    if (!_logL2CacheLock) {
-        _logL2CacheLock = [[NSLock alloc] init];
-    }
-    return _logL2CacheLock;
-}
 @end

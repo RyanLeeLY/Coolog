@@ -30,15 +30,15 @@
     
     _consoleLoggerDriver = [[COLLoggerDriver alloc] initWithLogger:[COLConsoleLogger logger]
                                                          formatter:[COLLogFormatter ConsoleFormatter]
-                                                             level:COLLoggerLevelWarning];
+                                                             level:COLLoggerLevelDebug];
     
     _fileLoggerDriver = [[COLLoggerDriver alloc] initWithLogger:[COLFileLogger logger]
                                                       formatter:[COLLogFormatter FileFormatter]
                                                           level:COLLoggerLevelDebug];
     
 //    [_logEngine addDriver:_alsLoggerDriver];
-    [_logEngine addDriver:_consoleLoggerDriver];
-//    [_logEngine addDriver:_fileLoggerDriver];
+//    [_logEngine addDriver:_consoleLoggerDriver];
+    [_logEngine addDriver:_fileLoggerDriver];
 }
 
 - (IBAction)buttonOnTapped:(UIButton *)sender {
@@ -46,19 +46,20 @@
     for (int i=0; i<arc4random()%200; i++) {
         [message addObject:[NSString stringWithFormat:@"value%@", @(i)]];
     }
-    dispatch_async(dispatch_get_main_queue(), ^{
+//    dispatch_async(dispatch_get_main_queue(), ^{
         [self logTimeTakenToRunBlock:^{
-            for (int i=0; i<1; i++) {
-                [self.logEngine logWithType:arc4random()%5 tag:@"tag" message:[message description] date:[NSDate date] thread:[NSThread currentThread]];
+            for (int i=0; i<10000; i++) {
+                [self.logEngine logWithType:arc4random()%5 tag:@"tag" message:@"testtesttesttesttesttesttest" date:[NSDate date] thread:[NSThread currentThread]];
             }
         } withPrefix:@"LOG in main thread"];
-    });
-    
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        for (int i=0; i<200; i++) {
-//            [self.logEngine logWithTag:@"tag" type:COLLogTypeInfo message:[@[@"value", @"value"] description] date:[NSDate date] thread:[NSThread currentThread]];
-//        }
 //    });
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        for (int i=0; i<10000; i++) {
+            [self.logEngine logWithType:arc4random()%5 tag:@"tag" message:@"testtesttesttesttesttesttest" date:[NSDate date] thread:[NSThread currentThread]];
+        }
+    });
 }
 
 - (IBAction)exportButtonOnTapped:(UIButton *)sender {

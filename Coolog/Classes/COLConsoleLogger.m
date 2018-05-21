@@ -31,7 +31,6 @@
         _clientsSemaphore = dispatch_semaphore_create(1);
         _server = [PSWebSocketServer serverWithHost:nil port:port];
         _server.delegate = self;
-        [self startRemoteLogger];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
@@ -48,7 +47,7 @@
 }
 
 - (void)log:(NSString *)logString {
-    printf("%s", [logString UTF8String]);
+    printf("%s\n", [logString UTF8String]);
     if (self.remoteEnabled) {
         dispatch_semaphore_wait(_clientsSemaphore, DISPATCH_TIME_FOREVER);
         [self.clients enumerateObjectsUsingBlock:^(PSWebSocket * _Nonnull client, NSUInteger idx, BOOL * _Nonnull stop) {
