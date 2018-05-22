@@ -26,7 +26,7 @@ pod 'Coolog'
 ```
 
 ## Architecture
-![BrowserTool](https://raw.githubusercontent.com/RyanLeeLY/Coolog/master/Arch.jpeg)
+![Architecture](https://raw.githubusercontent.com/RyanLeeLY/Coolog/master/Arch.jpeg)
 
 ## Usage
 
@@ -37,6 +37,7 @@ pod 'Coolog'
     
 [[COLLogManager sharedInstance] enableFileLog];  // open file log
 [[COLLogManager sharedInstance] enableConsoleLog];  // open xcode console log
+//    [[COLLogManager sharedInstance] enableNSLog];
     
 #ifdef DEBUG
     [COLLogManager sharedInstance].level = COLLogLevelAll;
@@ -114,7 +115,7 @@ The section below will introduce how to customize your own logger. You can follo
 @implementation MyLogFormatter
 // The log's format depends on this method.
 - (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
-    return [NSString stringWithFormat:@"tag=[%zd], type=[%@], message=[%@], date=[%@]", type, tag, message, date];
+    return [NSString stringWithFormat:@"tag=[%@], type=[%zd], message=[%@], date=[%@]", tag, type, message, date];
 }
 @end
 ```
