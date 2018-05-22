@@ -7,7 +7,7 @@
 
 #import "COLLogFormatter.h"
 
-static NSString * COLLogALSFormatterString = @"[##TAG:%@##] [##TYPE:%@##] [##DATE:%@##] [##THREAD:%@##] %@";
+static NSString * COLLogALSFormatterString = @"[##TAG:%@##] [##TYPE:%@##] [##DATE:%@##] %@";
 static NSString * COLLogConsoleFormatterString = @"[##TAG:%@##] [##TYPE:%@##] [##DATE:%@##] [##THREAD:%@##] %@";
 static NSString * COLLogFileFormatterString = @"[##TAG:%@##] [##TYPE:%@##] [##DATE:%@##] [##THREAD:%@##] %@";
 
@@ -17,7 +17,7 @@ static NSString * COLLogFileFormatterString = @"[##TAG:%@##] [##TYPE:%@##] [##DA
 @property (copy, nonatomic) NSArray<NSString *> *tagStrings;
 @end
 
-@interface COLLogALSFormatter : COLLogFormatter
+@interface COLLogNSFormatter : COLLogFormatter
 @end
 
 @interface COLLogConsoleFormatter : COLLogFormatter
@@ -35,8 +35,8 @@ static inline NSArray * COLLogTypeStringArray() {
     return [[COLLogFormatter alloc] initWithType:type];
 }
 
-+ (instancetype)ALSFormatter {
-    return [self formatterWithType:COLLogFormatTypeALS];
++ (instancetype)NSLogFormatter {
+    return [self formatterWithType:COLLogFormatTypeNSLog];
 }
 
 + (instancetype)ConsoleFormatter {
@@ -49,8 +49,8 @@ static inline NSArray * COLLogTypeStringArray() {
 
 - (instancetype)initWithType:(COLLogFormatType)type {
     switch (type) {
-        case COLLogFormatTypeALS:
-            self = [[COLLogALSFormatter alloc] init];
+        case COLLogFormatTypeNSLog:
+            self = [[COLLogNSFormatter alloc] init];
             break;
         case COLLogFormatTypeConsole:
             self = [[COLLogConsoleFormatter alloc] init];
@@ -72,7 +72,7 @@ static inline NSArray * COLLogTypeStringArray() {
     return self;
 }
 
-- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
     return nil;
 }
 
@@ -81,23 +81,24 @@ static inline NSArray * COLLogTypeStringArray() {
 }
 @end
 
-@implementation COLLogALSFormatter
-- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
+@implementation COLLogNSFormatter
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
     NSString *dateString = [self.dateFormatter stringFromDate:date];
-    return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, thread, message];
+    return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, message];
 }
 @end
 
 @implementation COLLogConsoleFormatter
-- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {    NSString *dateString = [self.dateFormatter stringFromDate:date];
-    return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, thread, message];
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
+    NSString *dateString = [self.dateFormatter stringFromDate:date];
+    return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, message];
 }
 @end
 
 @implementation COLLogFileFormatter
-- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
     NSString *dateString = [self.dateFormatter stringFromDate:date];
-    return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, thread, message];
+    return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, message];
 }
 @end
 

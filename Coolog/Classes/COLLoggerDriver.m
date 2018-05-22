@@ -6,7 +6,7 @@
 //
 
 #import "COLLoggerDriver.h"
-#import "COLALSLogger.h"
+#import "COLNSLogger.h"
 #import "COLConsoleLogger.h"
 #import "COLFileLogger.h"
 
@@ -24,12 +24,12 @@
 }
 
 - (instancetype)init {
-    return [self initWithLogger:[COLALSLogger logger] formatter:[[COLLogFormatter alloc] initWithType:COLLogFormatTypeALS] level:COLLogLevelDefault];
+    return [self initWithLogger:[COLNSLogger logger] formatter:[COLLogFormatter NSLogFormatter] level:COLLogLevelDefault];
 }
 
-- (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
+- (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
     if ((NSInteger)type < (NSInteger)self.level) {
-        [self.logger log:[self.formatter completeLogWithType:type tag:tag message:message date:date thread:thread]];
+        [self.logger log:[self.formatter completeLogWithType:type tag:tag message:message date:date]];
     }
 }
 @end

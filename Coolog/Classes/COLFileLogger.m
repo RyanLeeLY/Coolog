@@ -80,7 +80,9 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 }
 
 - (void)log:(NSString *)logString {
+    __weak typeof(self) _self = self;
     [self.loggerQueue addOperationWithBlock:^{
+        __strong typeof(_self) self = _self;
         [self.logL2Condition lock];
         [self.logL2Cache addObject:logString];
         

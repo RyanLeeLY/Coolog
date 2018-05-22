@@ -12,7 +12,7 @@
 
 #import "COLEngine.h"
 
-#import "COLALSLogger.h"
+#import "COLNSLogger.h"
 #import "COLConsoleLogger.h"
 #import "COLFileLogger.h"
 

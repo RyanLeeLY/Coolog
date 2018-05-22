@@ -8,5 +8,5 @@
 #import <Foundation/Foundation.h>
 #import "COLLogger.h"
 
-@interface COLALSLogger : NSObject <COLLogger>
+@interface COLNSLogger : NSObject <COLLogger>
 @end

@@ -17,5 +17,5 @@
 
 - (void)removeAllDrivers;
 
-- (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread;
+- (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date;
 @end

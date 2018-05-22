@@ -7,50 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0291BA9975AE00506A50636F434FD679 /* COLALSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E9581CA3D35207A06CD4BBA2BC0AB3E /* COLALSLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		05CC6DF5E69D2F8070B373DD673843E4 /* PSWebSocketInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = D3DD1D3844A500CE333EC16C7C3C3ECC /* PSWebSocketInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0F6AC4831A70F02FF01DE51636D564F1 /* COLLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = FB0948E0C82D14361FE261C1CE5B8246 /* COLLogFormatter.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		08896B8A3B22B9D1E02832E8BE61A908 /* COLEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DD496B12C35688E5A55F7C0C67B0E1D /* COLEngine.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		098CCB2CA69148E4D6091E4B3CACBA93 /* CoologMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = A1A8EF02B2CC825358B60046E480EE5D /* CoologMacros.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		124E8C2FCFB306313EDC5049EF40026E /* COLNSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 5907D405505A57AE87BDCF49995482D7 /* COLNSLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		13418C174E52D8D868F1F36E010E4C4D /* PSWebSocketInflater.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF18479117B47AB181C8ED8FB376561 /* PSWebSocketInflater.m */; };
-		2A93CEBCBF6635551F74DDDCECC272CD /* COLLoggerDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 84754195CBB85FF6EA7ACAD40EDDE7BD /* COLLoggerDriver.m */; };
-		2F2FF4CACD7E6E75ED402758AB80ABB8 /* COLFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 60ED6EA6D2FC50A04A6408EC6803F090 /* COLFileLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2E4AA56AF3B3AF8F1871F3959D272366 /* COLLoggerDriver.h in Headers */ = {isa = PBXBuildFile; fileRef = 45B7744B7B724486EF4366E4B17EAEE4 /* COLLoggerDriver.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		314E28144DF84820AC5804BEEC64893B /* PSWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 19791783BB9D6EBB7F3743005C8AE65C /* PSWebSocket.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3206C9A36881A8392655EA800A8BB811 /* PSWebSocketInflater.h in Headers */ = {isa = PBXBuildFile; fileRef = 69589907591A333922DFAC94C58209D5 /* PSWebSocketInflater.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		34E465DDC11AE054141955694ABEF2C4 /* Coolog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8301F83D36D81E3B5A01D6EB50280AAC /* Coolog-dummy.m */; };
 		3C5470917F21E47972D53DC4BEB0A6A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E3725257C79D0C80F87B9E2B291C17A /* Foundation.framework */; };
-		3D4072724F161A45E9B1A1691BA5AB2E /* CoologMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 652F7A5605ECBB5EEE26936C60976FFD /* CoologMacros.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3FBF491B2FBA29FC77CA00CC776D4498 /* PSWebSocketServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FCFB4D2FB50981A3309ADEE93397BA /* PSWebSocketServer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		42DEE12C8D6023B8F5055F01CD225A9D /* COLLoggerDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5C59FB7E12868661C60E0DB76FD6D1 /* COLLoggerDriver.m */; };
 		4702BB8BA829E3B452F9C9727379DBAD /* PSWebSocketDriver.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B84B615993B00EBF05BACCD92E24A09 /* PSWebSocketDriver.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4D37480503F48A4C8AFFC4EB3B2ACE18 /* COLConsoleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EAC7F181056272242DC3FF864F6F9FD /* COLConsoleLogger.m */; };
+		49E728C41EA93133928D28FBCE3CE77B /* COLEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B6D86C3C0A9988FA4DB734917FF31E /* COLEngine.m */; };
+		4C075ADC4F94BF192F8590C3E246BA5E /* COLConsoleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C26C8E6490752DF5C4A25B80B572D93 /* COLConsoleLogger.m */; };
+		55F1AAB9BCD0F02FBDA4427963CAE595 /* COLNSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B508F01C99DDB49E33811CC5686D9001 /* COLNSLogger.m */; };
+		66132F45FB43CCA889B8B33587704E7B /* COLLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 703C3293A6B1D793A22D833AB1A16EB2 /* COLLogManager.m */; };
 		6D3117A10584B25C6522A988EEA468FB /* PSWebSocketBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D30256D278608B1BD41A5A2DD43517 /* PSWebSocketBuffer.m */; };
 		6EB9DDB682CC593794B6FA4F51BF4783 /* PSWebSocketUTF8Decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C44B1555EA778EEDA196C199399EA77 /* PSWebSocketUTF8Decoder.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6F481DFB8916C24D0292EC6336020DA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E3725257C79D0C80F87B9E2B291C17A /* Foundation.framework */; };
-		71DDC3545656B7D35D9FC547C7F10EA1 /* COLALSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDA21113B43C2A3B53582AB49A15157 /* COLALSLogger.m */; };
-		72CFCAAAE2C535EEDFD3AD35A328226B /* COLLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 574362C44F4584E475AC2B2C66E27D5B /* COLLogManager.m */; };
-		776550BE6A56F87129BFF74D0D6C2069 /* COLEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A80878778ED2D16A8F24EF19FB96D50 /* COLEngine.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7A1895D30A9F632F67CFF0455B6B0D69 /* COLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 725A8FBF7D620D95020E9B95E0EDF4AD /* COLLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7FA4D9212F6B41E29689BD58BAD3F04A /* Coolog.h in Headers */ = {isa = PBXBuildFile; fileRef = 50BF69C7BF28AE3F07278E460CB2E4F2 /* Coolog.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8A79792A6BE9AE1734F4D2E35E52F24C /* COLLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E04F8BC69F2179C99D77E4959F4B902 /* COLLogFormatter.m */; };
+		8887782FA4E3005824D56C1E3CB74214 /* COLLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D77904A41A763EE8C3F553E95497D78 /* COLLogFormatter.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8A96ACC8FE5B566C16496BB6BD48AFFC /* PSWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FFE6B6EA0FBC86CA6743E25354F18893 /* PSWebSocket.m */; };
+		900951DBCE37813B4946BC3BD91CC4EA /* Coolog.h in Headers */ = {isa = PBXBuildFile; fileRef = C6841898F6D8FC69F370B2CA1405217F /* Coolog.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		970CE25D15760ED246159840D6A9F38B /* PSWebSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 443EC54454CDC07220FA7834CD60A62F /* PSWebSocketServer.m */; };
-		9C6BC1923A21CFE7BEC9ECA7423933CC /* COLEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F3D3EB4932839311BF59C350EC32F1B5 /* COLEngine.m */; };
 		9FC43519EE55FC2A1F50109605213FAA /* PocketSocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEB21D04CB15A4298CA92162DBB531 /* PocketSocket-dummy.m */; };
-		A38487FE026561E48C2F23B645796AAD /* COLLoggerDriver.h in Headers */ = {isa = PBXBuildFile; fileRef = D3A8BA16C538D109E1DA0EC76F02EA1F /* COLLoggerDriver.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A24B2C0B4444CA0A54F2DBF815745CA6 /* COLFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = C04DA9B3F0BAA3C801D0068FBF061E3B /* COLFileLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A7807FB0C422210F878FFFBD87F76148 /* COLFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D2F9E4FDD86E8BE8801A6F847F6AD6 /* COLFileLogger.m */; };
 		A7E1253A5762617B326C5E452E43332D /* PSWebSocketDeflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C06C3A2209A665769A3E6E2333EEE5C /* PSWebSocketDeflater.m */; };
 		A83D69A4EA06CA8F6AC054962C230432 /* PSWebSocketDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C5A9D018E7D5D7D06293568716CAF4 /* PSWebSocketDriver.m */; };
 		B12D6EF7E7E9D58DACDFB786D89BEE6C /* Pods-Coolog_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F4CC80B2F4E41CBE815374FF34323A13 /* Pods-Coolog_Example-dummy.m */; };
 		B43FB76115EED1E669DA56793DB5FAB6 /* Pods-Coolog_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA72D642DC6FF944870FA85F3D53039 /* Pods-Coolog_Tests-dummy.m */; };
 		B4B2D64FDB32ED8EAA9E690034E2CB17 /* PSWebSocketTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9823F02076F6E36C8F9E7B4D37CB885E /* PSWebSocketTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B91F099675225AF7AC184AABE9B33492 /* PSWebSocketNetworkThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 8989EAE972D1326B3C3408B0AE855D70 /* PSWebSocketNetworkThread.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BB2869A7F822547AEF99880F5F253346 /* COLLogManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D16319D7EA27B5DE9333D78892E852EB /* COLLogManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C15835738C0F0749608B931C92E2AE86 /* COLLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 816A5C1F0EBB5245A3A75E28D927BC99 /* COLLogFormatter.m */; };
+		C750BEBB6F252FB7EDAFE87C27A04B82 /* COLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = C89A5184B63602D7C41423D551C4C1AF /* COLLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C7C13B8998C22CC993FC5DD948D9687F /* PSWebSocketBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 55E8A5BB52C0B4AB2F9D8C0B4E0D2B1A /* PSWebSocketBuffer.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C9C58273E12E1819346F2C20D5713D45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E3725257C79D0C80F87B9E2B291C17A /* Foundation.framework */; };
 		CA153CF66DDFD2A7E873E115E72058D4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A847C3B26F9C9E99A5ACEACF501F86DD /* CFNetwork.framework */; };
+		CBEA96166BB9DA1C0EBA7E780804627E /* COLConsoleLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = A35D59DA2A8D8EB618ED7536543C44D8 /* COLConsoleLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D42DD0A6F094137E02FE7AEBF44BE29F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E3725257C79D0C80F87B9E2B291C17A /* Foundation.framework */; };
 		D7EE3A43D264A78D7AE05A006215D00D /* PSWebSocketUTF8Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C9BC29042D6FB71D2B0707A889C528 /* PSWebSocketUTF8Decoder.m */; };
 		E434FFCA8A81EEE0AB3D318F02FB0F87 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50F6DD994291AA39A94BEECAFAF0D785 /* Security.framework */; };
 		F0758A53CE119DCACF8F4868D3E3BA85 /* PSWebSocketDeflater.h in Headers */ = {isa = PBXBuildFile; fileRef = A5C920AE4A934B58EE42AED49EADE8D7 /* PSWebSocketDeflater.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F290776CB87400D94FED8FFF5BF2907D /* COLFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E58AE9C15F3211358DA0D9354ABDAC9 /* COLFileLogger.m */; };
-		F4E30ABCE74592D950F66424196391E6 /* COLConsoleLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CECB1B779A8B162326CAA9A51278652 /* COLConsoleLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F24E32D9E05B877C42D2D485BD0DB771 /* COLLogManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E499E2FDAE76F65E9BE5962B765581AB /* COLLogManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F2D0D95BE023C938E344A44924DB9CA6 /* Coolog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E2F005D449AFD21EC3228DAB802ECA /* Coolog-dummy.m */; };
 		FC020C09EF22B19749F0F0E44A90BEE8 /* PSWebSocketNetworkThread.m in Sources */ = {isa = PBXBuildFile; fileRef = AA248DA959D08673B9C79D17DD22208A /* PSWebSocketNetworkThread.m */; };
 /* End PBXBuildFile section */
 
@@ -86,70 +86,70 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07DA7965F42EFA0C415CD2DB6ADD68D3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		0C44B1555EA778EEDA196C199399EA77 /* PSWebSocketUTF8Decoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketUTF8Decoder.h; path = PocketSocket/PSWebSocketUTF8Decoder.h; sourceTree = "<group>"; };
+		0D555837DDA8D873D27CFA174577A586 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		0D77904A41A763EE8C3F553E95497D78 /* COLLogFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLLogFormatter.h; path = Coolog/Classes/COLLogFormatter.h; sourceTree = "<group>"; };
 		14C9BC29042D6FB71D2B0707A889C528 /* PSWebSocketUTF8Decoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketUTF8Decoder.m; path = PocketSocket/PSWebSocketUTF8Decoder.m; sourceTree = "<group>"; };
 		17172A0C420CD71861D9D9453FE810C1 /* Pods-Coolog_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Coolog_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		19791783BB9D6EBB7F3743005C8AE65C /* PSWebSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocket.h; path = PocketSocket/PSWebSocket.h; sourceTree = "<group>"; };
 		1B50845C43D253F802B8F7540E129430 /* PocketSocket-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PocketSocket-prefix.pch"; sourceTree = "<group>"; };
-		1D9088396975F32E0E6A0BF883E5DAD2 /* Coolog.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = Coolog.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		248A1B44ABA6CBD1B17845FEC57B3865 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		25DE780723812077351F05188B50D2B0 /* Pods-Coolog_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Coolog_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		2C06C3A2209A665769A3E6E2333EEE5C /* PSWebSocketDeflater.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketDeflater.m; path = PocketSocket/PSWebSocketDeflater.m; sourceTree = "<group>"; };
 		3B84B615993B00EBF05BACCD92E24A09 /* PSWebSocketDriver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketDriver.h; path = PocketSocket/PSWebSocketDriver.h; sourceTree = "<group>"; };
-		3B9A15FF1868C73299AEAB21999F3448 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		3FBA0B4C35640D4F24F4FDD87C59CE91 /* libPods-Coolog_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Coolog_Example.a"; path = "libPods-Coolog_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FCFB4D2FB50981A3309ADEE93397BA /* PSWebSocketServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketServer.h; path = PocketSocket/PSWebSocketServer.h; sourceTree = "<group>"; };
 		443EC54454CDC07220FA7834CD60A62F /* PSWebSocketServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketServer.m; path = PocketSocket/PSWebSocketServer.m; sourceTree = "<group>"; };
-		4CECB1B779A8B162326CAA9A51278652 /* COLConsoleLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLConsoleLogger.h; path = Coolog/Classes/COLConsoleLogger.h; sourceTree = "<group>"; };
-		4E9581CA3D35207A06CD4BBA2BC0AB3E /* COLALSLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLALSLogger.h; path = Coolog/Classes/COLALSLogger.h; sourceTree = "<group>"; };
-		50BF69C7BF28AE3F07278E460CB2E4F2 /* Coolog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Coolog.h; path = Coolog/Classes/Coolog.h; sourceTree = "<group>"; };
+		45B7744B7B724486EF4366E4B17EAEE4 /* COLLoggerDriver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLLoggerDriver.h; path = Coolog/Classes/COLLoggerDriver.h; sourceTree = "<group>"; };
 		50F6DD994291AA39A94BEECAFAF0D785 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		5276A8CF3E125B84F537AEEBFBF08806 /* Pods-Coolog_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Coolog_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		53C2AE6E5522FABA13203AD8B9D9B698 /* Pods-Coolog_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Coolog_Tests-resources.sh"; sourceTree = "<group>"; };
 		55E8A5BB52C0B4AB2F9D8C0B4E0D2B1A /* PSWebSocketBuffer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketBuffer.h; path = PocketSocket/PSWebSocketBuffer.h; sourceTree = "<group>"; };
 		5710F89CAB63F5ADFAA2E4D4410FCE90 /* PocketSocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PocketSocket.xcconfig; sourceTree = "<group>"; };
-		574362C44F4584E475AC2B2C66E27D5B /* COLLogManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLLogManager.m; path = Coolog/Classes/COLLogManager.m; sourceTree = "<group>"; };
 		578D5CB6BE8A9A3798960B7C20316A3F /* Pods-Coolog_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Coolog_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		5907D405505A57AE87BDCF49995482D7 /* COLNSLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLNSLogger.h; path = Coolog/Classes/COLNSLogger.h; sourceTree = "<group>"; };
+		5C5C59FB7E12868661C60E0DB76FD6D1 /* COLLoggerDriver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLLoggerDriver.m; path = Coolog/Classes/COLLoggerDriver.m; sourceTree = "<group>"; };
 		6048C862C23D9B4D8C9D0C45602B242B /* Pods-Coolog_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Coolog_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		60ED6EA6D2FC50A04A6408EC6803F090 /* COLFileLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLFileLogger.h; path = Coolog/Classes/COLFileLogger.h; sourceTree = "<group>"; };
-		652F7A5605ECBB5EEE26936C60976FFD /* CoologMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CoologMacros.h; path = Coolog/Classes/CoologMacros.h; sourceTree = "<group>"; };
 		69589907591A333922DFAC94C58209D5 /* PSWebSocketInflater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketInflater.h; path = PocketSocket/PSWebSocketInflater.h; sourceTree = "<group>"; };
-		6E58AE9C15F3211358DA0D9354ABDAC9 /* COLFileLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLFileLogger.m; path = Coolog/Classes/COLFileLogger.m; sourceTree = "<group>"; };
-		6EAC7F181056272242DC3FF864F6F9FD /* COLConsoleLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLConsoleLogger.m; path = Coolog/Classes/COLConsoleLogger.m; sourceTree = "<group>"; };
-		725A8FBF7D620D95020E9B95E0EDF4AD /* COLLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLLogger.h; path = Coolog/Classes/COLLogger.h; sourceTree = "<group>"; };
+		703C3293A6B1D793A22D833AB1A16EB2 /* COLLogManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLLogManager.m; path = Coolog/Classes/COLLogManager.m; sourceTree = "<group>"; };
 		72BEB21D04CB15A4298CA92162DBB531 /* PocketSocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PocketSocket-dummy.m"; sourceTree = "<group>"; };
+		731934EFB06DE28F12B50D8E3316F2D8 /* Coolog.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = Coolog.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		75BA10F7BCAEB96A2903E9581A85FBC8 /* Pods-Coolog_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Coolog_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		75D30256D278608B1BD41A5A2DD43517 /* PSWebSocketBuffer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketBuffer.m; path = PocketSocket/PSWebSocketBuffer.m; sourceTree = "<group>"; };
 		76C5A9D018E7D5D7D06293568716CAF4 /* PSWebSocketDriver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketDriver.m; path = PocketSocket/PSWebSocketDriver.m; sourceTree = "<group>"; };
-		7A80878778ED2D16A8F24EF19FB96D50 /* COLEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLEngine.h; path = Coolog/Classes/COLEngine.h; sourceTree = "<group>"; };
-		7E04F8BC69F2179C99D77E4959F4B902 /* COLLogFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLLogFormatter.m; path = Coolog/Classes/COLLogFormatter.m; sourceTree = "<group>"; };
-		8301F83D36D81E3B5A01D6EB50280AAC /* Coolog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Coolog-dummy.m"; sourceTree = "<group>"; };
-		84754195CBB85FF6EA7ACAD40EDDE7BD /* COLLoggerDriver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLLoggerDriver.m; path = Coolog/Classes/COLLoggerDriver.m; sourceTree = "<group>"; };
+		7DD496B12C35688E5A55F7C0C67B0E1D /* COLEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLEngine.h; path = Coolog/Classes/COLEngine.h; sourceTree = "<group>"; };
+		816A5C1F0EBB5245A3A75E28D927BC99 /* COLLogFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLLogFormatter.m; path = Coolog/Classes/COLLogFormatter.m; sourceTree = "<group>"; };
 		8989EAE972D1326B3C3408B0AE855D70 /* PSWebSocketNetworkThread.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketNetworkThread.h; path = PocketSocket/PSWebSocketNetworkThread.h; sourceTree = "<group>"; };
 		8DAA8C461A812E3B0EC6776A9801C0B6 /* libCoolog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libCoolog.a; path = libCoolog.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		95D2F9E4FDD86E8BE8801A6F847F6AD6 /* COLFileLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLFileLogger.m; path = Coolog/Classes/COLFileLogger.m; sourceTree = "<group>"; };
 		9823F02076F6E36C8F9E7B4D37CB885E /* PSWebSocketTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketTypes.h; path = PocketSocket/PSWebSocketTypes.h; sourceTree = "<group>"; };
+		9C26C8E6490752DF5C4A25B80B572D93 /* COLConsoleLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLConsoleLogger.m; path = Coolog/Classes/COLConsoleLogger.m; sourceTree = "<group>"; };
 		9E3725257C79D0C80F87B9E2B291C17A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A1A8EF02B2CC825358B60046E480EE5D /* CoologMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CoologMacros.h; path = Coolog/Classes/CoologMacros.h; sourceTree = "<group>"; };
+		A35D59DA2A8D8EB618ED7536543C44D8 /* COLConsoleLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLConsoleLogger.h; path = Coolog/Classes/COLConsoleLogger.h; sourceTree = "<group>"; };
 		A5C920AE4A934B58EE42AED49EADE8D7 /* PSWebSocketDeflater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketDeflater.h; path = PocketSocket/PSWebSocketDeflater.h; sourceTree = "<group>"; };
 		A847C3B26F9C9E99A5ACEACF501F86DD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		AA248DA959D08673B9C79D17DD22208A /* PSWebSocketNetworkThread.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketNetworkThread.m; path = PocketSocket/PSWebSocketNetworkThread.m; sourceTree = "<group>"; };
-		B45B01AD141C8A6BFF587F7E359902A6 /* Coolog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Coolog.xcconfig; sourceTree = "<group>"; };
+		B508F01C99DDB49E33811CC5686D9001 /* COLNSLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLNSLogger.m; path = Coolog/Classes/COLNSLogger.m; sourceTree = "<group>"; };
+		BCDCA201EA5D96343298FDCE72ADBAB5 /* Coolog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Coolog.xcconfig; sourceTree = "<group>"; };
 		BDB888D498A3E8D4729B7B73322D49E5 /* Pods-Coolog_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Coolog_Example-resources.sh"; sourceTree = "<group>"; };
+		C04DA9B3F0BAA3C801D0068FBF061E3B /* COLFileLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLFileLogger.h; path = Coolog/Classes/COLFileLogger.h; sourceTree = "<group>"; };
 		C3D499C02EEDCA8528AA4454732A309A /* Pods-Coolog_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Coolog_Example.release.xcconfig"; sourceTree = "<group>"; };
-		CEDA21113B43C2A3B53582AB49A15157 /* COLALSLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLALSLogger.m; path = Coolog/Classes/COLALSLogger.m; sourceTree = "<group>"; };
-		D16319D7EA27B5DE9333D78892E852EB /* COLLogManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLLogManager.h; path = Coolog/Classes/COLLogManager.h; sourceTree = "<group>"; };
-		D3A8BA16C538D109E1DA0EC76F02EA1F /* COLLoggerDriver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLLoggerDriver.h; path = Coolog/Classes/COLLoggerDriver.h; sourceTree = "<group>"; };
+		C6841898F6D8FC69F370B2CA1405217F /* Coolog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Coolog.h; path = Coolog/Classes/Coolog.h; sourceTree = "<group>"; };
+		C89A5184B63602D7C41423D551C4C1AF /* COLLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLLogger.h; path = Coolog/Classes/COLLogger.h; sourceTree = "<group>"; };
+		CDBD206F9CB52360CC318F612FF1D581 /* Coolog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Coolog-prefix.pch"; sourceTree = "<group>"; };
 		D3DD1D3844A500CE333EC16C7C3C3ECC /* PSWebSocketInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketInternal.h; path = PocketSocket/PSWebSocketInternal.h; sourceTree = "<group>"; };
 		D73F7A020BEB8A0A9598A4CB3A052B96 /* libPocketSocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libPocketSocket.a; path = libPocketSocket.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7E2F005D449AFD21EC3228DAB802ECA /* Coolog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Coolog-dummy.m"; sourceTree = "<group>"; };
 		DD8B1706AD4893A95C7FACFDEB98C64D /* Pods-Coolog_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Coolog_Example-frameworks.sh"; sourceTree = "<group>"; };
 		DDA72D642DC6FF944870FA85F3D53039 /* Pods-Coolog_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Coolog_Tests-dummy.m"; sourceTree = "<group>"; };
 		DEF18479117B47AB181C8ED8FB376561 /* PSWebSocketInflater.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketInflater.m; path = PocketSocket/PSWebSocketInflater.m; sourceTree = "<group>"; };
+		E499E2FDAE76F65E9BE5962B765581AB /* COLLogManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLLogManager.h; path = Coolog/Classes/COLLogManager.h; sourceTree = "<group>"; };
+		E4B6D86C3C0A9988FA4DB734917FF31E /* COLEngine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLEngine.m; path = Coolog/Classes/COLEngine.m; sourceTree = "<group>"; };
 		E8A68D0BC9DA01A42441635B38ACF555 /* Pods-Coolog_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Coolog_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		F3D3EB4932839311BF59C350EC32F1B5 /* COLEngine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = COLEngine.m; path = Coolog/Classes/COLEngine.m; sourceTree = "<group>"; };
 		F4CC80B2F4E41CBE815374FF34323A13 /* Pods-Coolog_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Coolog_Example-dummy.m"; sourceTree = "<group>"; };
-		F5B311A36221290B26D75A9D7D056C69 /* Coolog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Coolog-prefix.pch"; sourceTree = "<group>"; };
 		F80B8A1D268916C1600376BED2D1E412 /* Pods-Coolog_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Coolog_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		FB0948E0C82D14361FE261C1CE5B8246 /* COLLogFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = COLLogFormatter.h; path = Coolog/Classes/COLLogFormatter.h; sourceTree = "<group>"; };
 		FF11A2A4FC3DDA68571A028DDE617A21 /* libPods-Coolog_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Coolog_Tests.a"; path = "libPods-Coolog_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE6B6EA0FBC86CA6743E25354F18893 /* PSWebSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocket.m; path = PocketSocket/PSWebSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,43 +192,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		08336CF960E8BD0E8CACA3B90A74A519 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				1D9088396975F32E0E6A0BF883E5DAD2 /* Coolog.podspec */,
-				3B9A15FF1868C73299AEAB21999F3448 /* LICENSE */,
-				248A1B44ABA6CBD1B17845FEC57B3865 /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		11BE94E57CA1210CC2C8BB18AFBE65F7 /* Coolog */ = {
-			isa = PBXGroup;
-			children = (
-				4E9581CA3D35207A06CD4BBA2BC0AB3E /* COLALSLogger.h */,
-				CEDA21113B43C2A3B53582AB49A15157 /* COLALSLogger.m */,
-				4CECB1B779A8B162326CAA9A51278652 /* COLConsoleLogger.h */,
-				6EAC7F181056272242DC3FF864F6F9FD /* COLConsoleLogger.m */,
-				7A80878778ED2D16A8F24EF19FB96D50 /* COLEngine.h */,
-				F3D3EB4932839311BF59C350EC32F1B5 /* COLEngine.m */,
-				60ED6EA6D2FC50A04A6408EC6803F090 /* COLFileLogger.h */,
-				6E58AE9C15F3211358DA0D9354ABDAC9 /* COLFileLogger.m */,
-				FB0948E0C82D14361FE261C1CE5B8246 /* COLLogFormatter.h */,
-				7E04F8BC69F2179C99D77E4959F4B902 /* COLLogFormatter.m */,
-				725A8FBF7D620D95020E9B95E0EDF4AD /* COLLogger.h */,
-				D3A8BA16C538D109E1DA0EC76F02EA1F /* COLLoggerDriver.h */,
-				84754195CBB85FF6EA7ACAD40EDDE7BD /* COLLoggerDriver.m */,
-				D16319D7EA27B5DE9333D78892E852EB /* COLLogManager.h */,
-				574362C44F4584E475AC2B2C66E27D5B /* COLLogManager.m */,
-				50BF69C7BF28AE3F07278E460CB2E4F2 /* Coolog.h */,
-				652F7A5605ECBB5EEE26936C60976FFD /* CoologMacros.h */,
-				08336CF960E8BD0E8CACA3B90A74A519 /* Pod */,
-				3BC02B5C853AB7A3D5E5EA55B2810B94 /* Support Files */,
-			);
-			name = Coolog;
-			path = ../..;
-			sourceTree = "<group>";
-		};
 		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,12 +230,12 @@
 			path = "Target Support Files/Pods-Coolog_Tests";
 			sourceTree = "<group>";
 		};
-		3BC02B5C853AB7A3D5E5EA55B2810B94 /* Support Files */ = {
+		54ED106C59736D7AA2586C6113AD79A6 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				B45B01AD141C8A6BFF587F7E359902A6 /* Coolog.xcconfig */,
-				8301F83D36D81E3B5A01D6EB50280AAC /* Coolog-dummy.m */,
-				F5B311A36221290B26D75A9D7D056C69 /* Coolog-prefix.pch */,
+				BCDCA201EA5D96343298FDCE72ADBAB5 /* Coolog.xcconfig */,
+				D7E2F005D449AFD21EC3228DAB802ECA /* Coolog-dummy.m */,
+				CDBD206F9CB52360CC318F612FF1D581 /* Coolog-prefix.pch */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/Coolog";
@@ -353,7 +316,7 @@
 		919D726E4989B0EED3ACCA222675D06F /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				11BE94E57CA1210CC2C8BB18AFBE65F7 /* Coolog */,
+				C2C05D3C63F4C0A6E146E3F78795A875 /* Coolog */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -369,6 +332,16 @@
 			name = Client;
 			sourceTree = "<group>";
 		};
+		AEF6C9F883D03D7B43587FB962A1604B /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				731934EFB06DE28F12B50D8E3316F2D8 /* Coolog.podspec */,
+				0D555837DDA8D873D27CFA174577A586 /* LICENSE */,
+				07DA7965F42EFA0C415CD2DB6ADD68D3 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
 		B8062430E56CC3DA561B8430DA223898 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +351,33 @@
 				FF11A2A4FC3DDA68571A028DDE617A21 /* libPods-Coolog_Tests.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C2C05D3C63F4C0A6E146E3F78795A875 /* Coolog */ = {
+			isa = PBXGroup;
+			children = (
+				A35D59DA2A8D8EB618ED7536543C44D8 /* COLConsoleLogger.h */,
+				9C26C8E6490752DF5C4A25B80B572D93 /* COLConsoleLogger.m */,
+				7DD496B12C35688E5A55F7C0C67B0E1D /* COLEngine.h */,
+				E4B6D86C3C0A9988FA4DB734917FF31E /* COLEngine.m */,
+				C04DA9B3F0BAA3C801D0068FBF061E3B /* COLFileLogger.h */,
+				95D2F9E4FDD86E8BE8801A6F847F6AD6 /* COLFileLogger.m */,
+				0D77904A41A763EE8C3F553E95497D78 /* COLLogFormatter.h */,
+				816A5C1F0EBB5245A3A75E28D927BC99 /* COLLogFormatter.m */,
+				C89A5184B63602D7C41423D551C4C1AF /* COLLogger.h */,
+				45B7744B7B724486EF4366E4B17EAEE4 /* COLLoggerDriver.h */,
+				5C5C59FB7E12868661C60E0DB76FD6D1 /* COLLoggerDriver.m */,
+				E499E2FDAE76F65E9BE5962B765581AB /* COLLogManager.h */,
+				703C3293A6B1D793A22D833AB1A16EB2 /* COLLogManager.m */,
+				5907D405505A57AE87BDCF49995482D7 /* COLNSLogger.h */,
+				B508F01C99DDB49E33811CC5686D9001 /* COLNSLogger.m */,
+				C6841898F6D8FC69F370B2CA1405217F /* Coolog.h */,
+				A1A8EF02B2CC825358B60046E480EE5D /* CoologMacros.h */,
+				AEF6C9F883D03D7B43587FB962A1604B /* Pod */,
+				54ED106C59736D7AA2586C6113AD79A6 /* Support Files */,
+			);
+			name = Coolog;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		D6D888213905F34217EF1880BE2758BA /* iOS */ = {
@@ -418,20 +418,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		653B14A8C4C389F55A66948E1DD6DA92 /* Headers */ = {
+		F02B0B095B37F65562667724D5D6867D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0291BA9975AE00506A50636F434FD679 /* COLALSLogger.h in Headers */,
-				F4E30ABCE74592D950F66424196391E6 /* COLConsoleLogger.h in Headers */,
-				776550BE6A56F87129BFF74D0D6C2069 /* COLEngine.h in Headers */,
-				2F2FF4CACD7E6E75ED402758AB80ABB8 /* COLFileLogger.h in Headers */,
-				0F6AC4831A70F02FF01DE51636D564F1 /* COLLogFormatter.h in Headers */,
-				7A1895D30A9F632F67CFF0455B6B0D69 /* COLLogger.h in Headers */,
-				A38487FE026561E48C2F23B645796AAD /* COLLoggerDriver.h in Headers */,
-				BB2869A7F822547AEF99880F5F253346 /* COLLogManager.h in Headers */,
-				7FA4D9212F6B41E29689BD58BAD3F04A /* Coolog.h in Headers */,
-				3D4072724F161A45E9B1A1691BA5AB2E /* CoologMacros.h in Headers */,
+				CBEA96166BB9DA1C0EBA7E780804627E /* COLConsoleLogger.h in Headers */,
+				08896B8A3B22B9D1E02832E8BE61A908 /* COLEngine.h in Headers */,
+				A24B2C0B4444CA0A54F2DBF815745CA6 /* COLFileLogger.h in Headers */,
+				8887782FA4E3005824D56C1E3CB74214 /* COLLogFormatter.h in Headers */,
+				C750BEBB6F252FB7EDAFE87C27A04B82 /* COLLogger.h in Headers */,
+				2E4AA56AF3B3AF8F1871F3959D272366 /* COLLoggerDriver.h in Headers */,
+				F24E32D9E05B877C42D2D485BD0DB771 /* COLLogManager.h in Headers */,
+				124E8C2FCFB306313EDC5049EF40026E /* COLNSLogger.h in Headers */,
+				900951DBCE37813B4946BC3BD91CC4EA /* Coolog.h in Headers */,
+				098CCB2CA69148E4D6091E4B3CACBA93 /* CoologMacros.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,9 +477,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A838FA90E70E9334172717EAA676E4F /* Build configuration list for PBXNativeTarget "Coolog" */;
 			buildPhases = (
-				C8A047405CEA3ED4E6A0DE68ADC35559 /* Sources */,
+				55027D9EAFB8188AC3F3B52206D265FD /* Sources */,
 				BB2681AF2E86DDB7E058DA870A5CFFE3 /* Frameworks */,
-				653B14A8C4C389F55A66948E1DD6DA92 /* Headers */,
+				F02B0B095B37F65562667724D5D6867D /* Headers */,
 			);
 			buildRules = (
 			);
@@ -538,6 +538,21 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		55027D9EAFB8188AC3F3B52206D265FD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C075ADC4F94BF192F8590C3E246BA5E /* COLConsoleLogger.m in Sources */,
+				49E728C41EA93133928D28FBCE3CE77B /* COLEngine.m in Sources */,
+				A7807FB0C422210F878FFFBD87F76148 /* COLFileLogger.m in Sources */,
+				C15835738C0F0749608B931C92E2AE86 /* COLLogFormatter.m in Sources */,
+				42DEE12C8D6023B8F5055F01CD225A9D /* COLLoggerDriver.m in Sources */,
+				66132F45FB43CCA889B8B33587704E7B /* COLLogManager.m in Sources */,
+				55F1AAB9BCD0F02FBDA4427963CAE595 /* COLNSLogger.m in Sources */,
+				F2D0D95BE023C938E344A44924DB9CA6 /* Coolog-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9D61CF4AFF7138FAA086DD41E8C725AA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -551,21 +566,6 @@
 				FC020C09EF22B19749F0F0E44A90BEE8 /* PSWebSocketNetworkThread.m in Sources */,
 				970CE25D15760ED246159840D6A9F38B /* PSWebSocketServer.m in Sources */,
 				D7EE3A43D264A78D7AE05A006215D00D /* PSWebSocketUTF8Decoder.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C8A047405CEA3ED4E6A0DE68ADC35559 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				71DDC3545656B7D35D9FC547C7F10EA1 /* COLALSLogger.m in Sources */,
-				4D37480503F48A4C8AFFC4EB3B2ACE18 /* COLConsoleLogger.m in Sources */,
-				9C6BC1923A21CFE7BEC9ECA7423933CC /* COLEngine.m in Sources */,
-				F290776CB87400D94FED8FFF5BF2907D /* COLFileLogger.m in Sources */,
-				8A79792A6BE9AE1734F4D2E35E52F24C /* COLLogFormatter.m in Sources */,
-				2A93CEBCBF6635551F74DDDCECC272CD /* COLLoggerDriver.m in Sources */,
-				72CFCAAAE2C535EEDFD3AD35A328226B /* COLLogManager.m in Sources */,
-				34E465DDC11AE054141955694ABEF2C4 /* Coolog-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,7 +641,7 @@
 		};
 		1C4DE58D01B6B199FF1AEE2F0FFE3009 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B45B01AD141C8A6BFF587F7E359902A6 /* Coolog.xcconfig */;
+			baseConfigurationReference = BCDCA201EA5D96343298FDCE72ADBAB5 /* Coolog.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -751,7 +751,7 @@
 		};
 		953426A3424A48C16CEE604515D130EC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B45B01AD141C8A6BFF587F7E359902A6 /* Coolog.xcconfig */;
+			baseConfigurationReference = BCDCA201EA5D96343298FDCE72ADBAB5 /* Coolog.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

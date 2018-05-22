@@ -6,7 +6,7 @@
 //
 
 #import "COLLogManager.h"
-#import "COLALSLogger.h"
+#import "COLNSLogger.h"
 #import "COLConsoleLogger.h"
 #import "COLFileLogger.h"
 #import "COLLoggerDriver.h"
@@ -32,8 +32,8 @@
 - (void)setup {
     _logEngine = [[COLEngine alloc] init];
     _level = COLLogLevelAll;
-    _alsLoggerDriver = [[COLLoggerDriver alloc] initWithLogger:[COLALSLogger logger]
-                                                     formatter:[COLLogFormatter ALSFormatter]
+    _alsLoggerDriver = [[COLLoggerDriver alloc] initWithLogger:[COLNSLogger logger]
+                                                     formatter:[COLLogFormatter NSLogFormatter]
                                                          level:_level];
     
     _consoleLoggerDriver = [[COLLoggerDriver alloc] initWithLogger:[COLConsoleLogger logger]
@@ -46,7 +46,7 @@
 }
 
 - (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message {
-    [self.logEngine logWithType:type tag:tag message:message date:[NSDate date] thread:[NSThread currentThread]];
+    [self.logEngine logWithType:type tag:tag message:message date:[NSDate date]];
 }
 
 - (void)enableALSLog {

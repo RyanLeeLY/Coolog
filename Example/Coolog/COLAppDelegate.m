@@ -16,7 +16,7 @@
     [[COLLogManager sharedInstance] setup];
     [[COLLogManager sharedInstance] enableFileLog];
     [[COLLogManager sharedInstance] enableConsoleLog];
-//    [[COLLogManager sharedInstance] enableALSLog];
+//    [[COLLogManager sharedInstance] enableNSLog];
 #ifdef DEBUG
     [COLLogManager sharedInstance].level = COLLogLevelAll;
 #else

@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, COLLogFormatType) {
-    COLLogFormatTypeALS = 0,
+    COLLogFormatTypeNSLog = 0,
     COLLogFormatTypeConsole,
     COLLogFormatTypeFile,
 };
@@ -22,12 +22,12 @@ typedef NS_ENUM(NSUInteger, COLLogType) {
 };
 
 @protocol COLFormatable <NSObject>
-- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread;
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date;
 @end
 
 @interface COLLogFormatter : NSObject <COLFormatable>
 + (instancetype)formatterWithType:(COLLogFormatType)type;
-+ (instancetype)ALSFormatter;
++ (instancetype)NSLogFormatter;
 + (instancetype)ConsoleFormatter;
 + (instancetype)FileFormatter;
 

@@ -1,1 +1,0 @@
-../../../../../Coolog/Classes/COLALSLogger.h

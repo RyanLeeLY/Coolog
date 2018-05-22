@@ -8,10 +8,11 @@
 #import "COLEngine.h"
 #import "COLLoggerDriver.h"
 #import "COLLogFormatter.h"
-#import "COLALSLogger.h"
+#import "COLNSLogger.h"
 #import "COLConsoleLogger.h"
 #import "COLFileLogger.h"
 #import "COLLogger.h"
+#import <pthread.h>
 
 @interface COLEngine ()
 @property (strong, nonatomic) NSMutableArray<COLLoggerDriver *> *drivers;
@@ -33,9 +34,9 @@
     [self.drivers removeAllObjects];
 }
 
-- (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
+- (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
     [self.drivers enumerateObjectsUsingBlock:^(COLLoggerDriver * _Nonnull driver, NSUInteger idx, BOOL * _Nonnull stop) {
-        [driver logWithType:type tag:tag message:message date:date thread:thread];
+        [driver logWithType:type tag:tag message:message date:date];
     }];
 }
 

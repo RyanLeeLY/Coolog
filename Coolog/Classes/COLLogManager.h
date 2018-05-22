@@ -20,20 +20,20 @@
 - (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message;
 
 /**
- Enable Apple Log System.
- 启用Apple Log System。
+ Enable NSLog.
+ 启用NSLog。
  */
-- (void)enableALSLog;
+- (void)enableNSLog;
 
 /**
- Disable Apple Log System.
- 关闭Apple Log System。
+ Disable NSLog.
+ 关闭NSLog。
  */
-- (void)disableALSLog;
+- (void)disableNSLog;
 
 /**
- Enable console log. We suggest don't Console Log when Apple Log System is enabled.
- 启用控制台log。我们建议这个功能不要同ALS同时开启。
+ Enable console log. We suggest don't Console Log when NSLog is enabled.
+ 启用控制台log。我们建议这个功能不要同NSLog同时开启。
  */
 - (void)enableConsoleLog;
 

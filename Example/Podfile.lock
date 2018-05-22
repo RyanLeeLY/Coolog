@@ -1,5 +1,5 @@
 PODS:
-  - Coolog (0.1.0):
+  - Coolog (0.2.0):
     - PocketSocket
   - PocketSocket (1.0.1):
     - PocketSocket/Client (= 1.0.1)
@@ -23,7 +23,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Coolog: 5cf2aa934be0fc98421a42aee61fb063d028fc5f
+  Coolog: d2be65910d99b5d9b5b55afab30dde43fbf5c900
   PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
 
 PODFILE CHECKSUM: 627792d81617edd766034b1a3e3ea6e970d89025

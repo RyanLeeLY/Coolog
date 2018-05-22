@@ -2,7 +2,7 @@
 
 Coolog is a expandable and flexible log framework for iOS. It provides a browser logging tool that can replace xcode console.
 
-[![CI Status](https://img.shields.io/travis/yao.li/Coolog.svg?style=flat)](https://travis-ci.org/yao.li/Coolog)
+[![CI Status](https://travis-ci.org/RyanLeeLY/Coolog.svg?branch=master)](https://travis-ci.org/RyanLeeLY/Coolog)
 [![Version](https://img.shields.io/cocoapods/v/Coolog.svg?style=flat)](https://cocoapods.org/pods/Coolog)
 [![License](https://img.shields.io/cocoapods/l/Coolog.svg?style=flat)](https://cocoapods.org/pods/Coolog)
 [![Platform](https://img.shields.io/cocoapods/p/Coolog.svg?style=flat)](https://cocoapods.org/pods/Coolog)
@@ -135,6 +135,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 * Search and filter function in web browser tool
 * Web browser Tool UI
 * Performance
+* Unit test
+* Swift version
 
 ## Author
 
