@@ -9,7 +9,7 @@
 #import "MyLogFormatter.h"
 
 @implementation MyLogFormatter
-- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
-    return [NSString stringWithFormat:@"tag=[%zd], type=[%@], message=[%@], date=[%@], thread=[%@]", type, tag, message, date, thread];
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
+    return [NSString stringWithFormat:@"tag=[%zd], type=[%@], message=[%@], date=[%@], thread=[%@]", type, tag, message, date];
 }
 @end

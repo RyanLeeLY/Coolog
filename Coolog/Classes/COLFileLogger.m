@@ -95,24 +95,26 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 
 - (void)transferCacheTask {
     while (1) {
-        [self.logL2Condition lock];
-        
-        if (self.logL2Cache.count < self.maxL2CacheSize) {
-            [self.logL2Condition wait];
+        @autoreleasepool {
+            [self.logL2Condition lock];
+            
+            if (self.logL2Cache.count < self.maxL2CacheSize) {
+                [self.logL2Condition wait];
+            }
+            NSArray *savedLogs = [self.logL2Cache copy];
+            [self.logL2Cache removeAllObjects];
+            [self.logL2Condition unlock];
+            
+            [self.logL1Condition lock];
+            [savedLogs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [self.logL1Cache addObject:[[obj stringByAppendingString:@"\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+            }];
+            
+            if (self.logL1Cache.count >= self.maxL1CacheSize) {
+                [self.logL1Condition signal];
+            }
+            [self.logL1Condition unlock];
         }
-        NSArray *savedLogs = [self.logL2Cache copy];
-        [self.logL2Cache removeAllObjects];
-        [self.logL2Condition unlock];
-        
-        [self.logL1Condition lock];
-        [savedLogs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self.logL1Cache addObject:[[obj stringByAppendingString:@"\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        }];
-        
-        if (self.logL1Cache.count >= self.maxL1CacheSize) {
-            [self.logL1Condition signal];
-        }
-        [self.logL1Condition unlock];
     }
 }
 
@@ -132,31 +134,33 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 
 - (void)writingFileTask {
     while (1) {
-        [self.logL1Condition lock];
-        if (self.logL1Cache.count < self.maxL1CacheSize) {
-            [self.logL1Condition wait];
+        @autoreleasepool {
+            [self.logL1Condition lock];
+            if (self.logL1Cache.count < self.maxL1CacheSize) {
+                [self.logL1Condition wait];
+            }
+            NSArray *savedLogDataArray = [self.logL1Cache copy];
+            [self.logL1Cache removeAllObjects];
+            [self.logL1Condition unlock];
+            
+            NSString *fileName = COLFileLoggerFileName();
+            [self.fileHandleLock lock];
+            NSFileHandle *fileHandle = [self fileHandleWithDirctoryPath:self.rootDirectoryPath fileName:fileName];
+            [fileHandle seekToEndOfFile];
+            
+            [savedLogDataArray enumerateObjectsUsingBlock:^(NSData * _Nonnull logData, NSUInteger idx, BOOL * _Nonnull stop) {
+                [fileHandle writeData:logData];
+            }];
+            
+            unsigned long long fsize = [fileHandle seekToEndOfFile];
+            [fileHandle closeFile];
+            
+            NSError *error = NULL;
+            if (fsize > self.maxSingleFileSize) {
+                [self moveLogFiletoTrash:fileName error:&error];
+            }
+            [self.fileHandleLock unlock];
         }
-        NSArray *savedLogDataArray = [self.logL1Cache copy];
-        [self.logL1Cache removeAllObjects];
-        [self.logL1Condition unlock];
-        
-        NSString *fileName = COLFileLoggerFileName();
-        [self.fileHandleLock lock];
-        NSFileHandle *fileHandle = [self fileHandleWithDirctoryPath:self.rootDirectoryPath fileName:fileName];
-        [fileHandle seekToEndOfFile];
-        
-        [savedLogDataArray enumerateObjectsUsingBlock:^(NSData * _Nonnull logData, NSUInteger idx, BOOL * _Nonnull stop) {
-            [fileHandle writeData:logData];
-        }];
-        
-        unsigned long long fsize = [fileHandle seekToEndOfFile];
-        [fileHandle closeFile];
-        
-        NSError *error = NULL;
-        if (fsize > self.maxSingleFileSize) {
-            [self moveLogFiletoTrash:fileName error:&error];
-        }
-        [self.fileHandleLock unlock];
     }
 }
 
@@ -165,6 +169,10 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
     NSArray *savedLogDataArray = [self.logL1Cache copy];
     [self.logL1Cache removeAllObjects];
     [self.logL1Condition unlock];
+    
+    if (savedLogDataArray.count == 0) {
+        return;
+    }
     
     NSString *fileName = COLFileLoggerFileName();
     [self.fileHandleLock lock];
