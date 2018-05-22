@@ -49,11 +49,11 @@
     [self.logEngine logWithType:type tag:tag message:message date:[NSDate date]];
 }
 
-- (void)enableALSLog {
+- (void)enableNSLog {
     [self.logEngine addDriver:self.alsLoggerDriver];
 }
 
-- (void)disableALSLog {
+- (void)disableNSLog {
     [self.logEngine removeDriver:self.alsLoggerDriver];
 }
 
