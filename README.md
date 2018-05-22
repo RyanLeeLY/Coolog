@@ -141,7 +141,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 yao.li, liyaoxjtu2013@gmail.com
 
 ## Thanks
-Coolog start a WebSocket server on your phone to send log data to your browser. We built this server using [PocketSocket](https://github.com/zwopple/PocketSocket). Special thanks to PocketSocket and its authors.
+Coolog start a WebSocket server on your phone to send log data to your browser. We built this server using [PocketSocket](https://github.com/zwopple/PocketSocket). Special thanks to PocketSocket and its contributors.
 
 ## License
 
