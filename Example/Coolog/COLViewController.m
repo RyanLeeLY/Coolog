@@ -23,32 +23,35 @@
     COLLoggerDriver *myDriver = [[COLLoggerDriver alloc] initWithLogger:[MyLogger logger]
                                                               formatter:[[MyLogFormatter alloc] init]
                                                                   level:COLLogLevelInfo];
-    [[COLLogManager sharedInstance].logEngine addDriver:myDriver];
+//    [[COLLogManager sharedInstance].logEngine addDriver:myDriver];
 }
 
 - (IBAction)buttonOnTapped:(UIButton *)sender {
     NSMutableArray *message = [NSMutableArray array];
-    for (int i=0; i<arc4random()%200; i++) {
+    for (int i=0; i<10; i++) {
         [message addObject:[NSString stringWithFormat:@"value%@", @(i)]];
     }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self logTimeTakenToRunBlock:^{
-            for (int i=0; i<1000; i++) {
-                CLogError(@"tag", @"%@", [message description]);
-            }
-        } withPrefix:@"LOG in main thread"];
-    });
-
-    for (int i=0; i<2; i++) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            CLogInfo(@"tag", @"%@", [message description]);
-        });
-    }
-    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self logTimeTakenToRunBlock:^{
+//            for (int i=0; i<10000; i++) {
+//                CLogError(@"tag", @"%@", [message description]);
+//            }
+//        } withPrefix:@"LOG in main thread"];
+//    });
+//
+//    for (int i=0; i<2; i++) {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            CLogInfo(@"tag", @"%@", [message description]);
+//        });
+//    }
+//
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        for (int i=0; i<1; i++) {
-            CLogDebug(@"tag", @"%@", [message description]);
-        }
+        [self logTimeTakenToRunBlock:^{
+            for (int i=0; i<10000; i++) {
+//                NSLog(@"tag %@ %@ %@", [message description], [NSThread currentThread], [NSDate date]);
+                CLogE(@"%@", [message description]);
+            }
+        } withPrefix:@"LOG in global thread"];
     });
 }
 
