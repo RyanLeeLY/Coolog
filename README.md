@@ -26,6 +26,7 @@ pod 'Coolog'
 ```
 
 ## Architecture
+![BrowserTool](https://raw.githubusercontent.com/RyanLeeLY/Coolog/master/Arch.jpeg)
 
 ## Usage
 
