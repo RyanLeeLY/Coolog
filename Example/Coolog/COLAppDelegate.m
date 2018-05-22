@@ -14,8 +14,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[COLLogManager sharedInstance] setup];
-//    [[COLLogManager sharedInstance] enableFileLog];
-//    [[COLLogManager sharedInstance] enableConsoleLog];
+    [[COLLogManager sharedInstance] enableFileLog];
+    [[COLLogManager sharedInstance] enableConsoleLog];
+//    [[COLLogManager sharedInstance] enableALSLog];
 #ifdef DEBUG
     [COLLogManager sharedInstance].level = COLLogLevelAll;
 #else
