@@ -22,7 +22,10 @@ typedef NS_ENUM(NSUInteger, COLLogType) {
 };
 
 @protocol COLFormatable <NSObject>
-- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date;
+- (NSString *)completeLogWithType:(COLLogType)type
+                              tag:(NSString *)tag
+                          message:(NSString *)message
+                             date:(NSDate *)date;
 @end
 
 @interface COLLogFormatter : NSObject <COLFormatable>

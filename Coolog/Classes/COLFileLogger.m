@@ -33,8 +33,6 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 @end
 
 @implementation COLFileLogger
-@synthesize formatterClass = _formatterClass;
-
 + (instancetype)logger {
     return [[COLFileLogger alloc] init];
 }

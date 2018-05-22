@@ -10,8 +10,6 @@
 @class COLLogFormatter;
 
 @protocol COLLogger <NSObject>
-@property (strong, nonatomic) Class formatterClass;
-
 + (instancetype)logger;
 
 - (void)log:(NSString *)logString;

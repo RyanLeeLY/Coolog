@@ -10,6 +10,6 @@
 
 @implementation MyLogFormatter
 - (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
-    return [NSString stringWithFormat:@"tag=[%zd], type=[%@], message=[%@], date=[%@], thread=[%@]", type, tag, message, date];
+    return [NSString stringWithFormat:@"tag=[%@], type=[%zd], message=[%@], date=[%@]", tag, type, message, date];
 }
 @end

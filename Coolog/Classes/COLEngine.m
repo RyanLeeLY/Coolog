@@ -16,42 +16,38 @@
 
 @interface COLEngine ()
 @property (strong, nonatomic) NSMutableArray<COLLoggerDriver *> *drivers;
-
-@property (strong, nonatomic) NSCache *formatterCache;
 @end
 
 @implementation COLEngine
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _drivers = [NSMutableArray array];
+    }
+    return self;
+}
 
 - (void)addDriver:(COLLoggerDriver *)driver {
-    [self.drivers addObject:driver];
+    @synchronized(self) {
+        [self.drivers addObject:driver];
+    }
 }
 
 - (void)removeDriver:(COLLoggerDriver *)driver {
-    [self.drivers removeObject:driver];
+    @synchronized(self) {
+        [self.drivers removeObject:driver];
+    }
 }
 
 - (void)removeAllDrivers {
-    [self.drivers removeAllObjects];
+    @synchronized(self) {
+        [self.drivers removeAllObjects];
+    }
 }
 
 - (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
     [self.drivers enumerateObjectsUsingBlock:^(COLLoggerDriver * _Nonnull driver, NSUInteger idx, BOOL * _Nonnull stop) {
         [driver logWithType:type tag:tag message:message date:date];
     }];
-}
-
-#pragma mark - getter
-- (NSMutableArray<COLLoggerDriver *> *)drivers {
-    if (!_drivers) {
-        _drivers = [NSMutableArray array];
-    }
-    return _drivers;
-}
-
-- (NSCache *)formatterCache {
-    if (!_formatterCache) {
-        _formatterCache = [[NSCache alloc] init];
-    }
-    return _formatterCache;
 }
 @end

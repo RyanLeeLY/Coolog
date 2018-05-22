@@ -8,8 +8,6 @@
 #import "COLNSLogger.h"
 
 @implementation COLNSLogger
-@synthesize formatterClass = _formatterClass;
-
 + (instancetype)logger {
     return [[COLNSLogger alloc] init];
 }

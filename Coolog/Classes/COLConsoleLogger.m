@@ -19,8 +19,6 @@
 @end
 
 @implementation COLConsoleLogger
-@synthesize formatterClass = _formatterClass;
-
 + (instancetype)logger {
     return [[COLConsoleLogger alloc] init];
 }
