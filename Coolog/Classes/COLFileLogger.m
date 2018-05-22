@@ -23,6 +23,7 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 @property (strong, nonatomic) NSMutableArray *logL1Cache;
 @property (strong, nonatomic) NSMutableArray *logL2Cache;
 
+@property (strong, nonatomic) NSOperationQueue *loggerQueue;
 @property (strong, nonatomic) dispatch_queue_t loggerFileQueue;
 @property (strong, nonatomic) dispatch_queue_t loggerCacheQueue;
 @property (strong, nonatomic) NSLock *fileHandleLock;
@@ -44,6 +45,9 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
     if (self) {
         _rootDirectoryPath = path;
         _storagedDay = storagedDay;
+        _loggerQueue = [[NSOperationQueue alloc] init];
+        _loggerQueue.maxConcurrentOperationCount = 1;
+        _loggerQueue.qualityOfService = NSQualityOfServiceBackground;
         _loggerFileQueue = dispatch_queue_create("com.coolog.loggerFileQueue", NULL);
         _loggerCacheQueue = dispatch_queue_create("com.coolog.loggerCacheQueue", NULL);
         _maxL2CacheSize = COLFileLoggerDefaultMaxL2CacheSize;
@@ -76,13 +80,15 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 }
 
 - (void)log:(NSString *)logString {
-    [self.logL2Condition lock];
-    [self.logL2Cache addObject:logString];
-    
-    if (self.logL2Cache.count >= self.maxL2CacheSize) {
-        [self.logL2Condition signal];
-    }
-    [self.logL2Condition unlock];
+    [self.loggerQueue addOperationWithBlock:^{
+        [self.logL2Condition lock];
+        [self.logL2Cache addObject:logString];
+        
+        if (self.logL2Cache.count >= self.maxL2CacheSize) {
+            [self.logL2Condition signal];
+        }
+        [self.logL2Condition unlock];
+    }];
 }
 
 - (void)transferCacheTask {
