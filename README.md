@@ -1,6 +1,6 @@
 # Coolog
 
-Coolog is a expandable and flexible log framework for iOS.
+Coolog is a expandable and flexible log framework for iOS. It provides a browser logging tool that can replace xcode console.
 
 [![CI Status](https://img.shields.io/travis/yao.li/Coolog.svg?style=flat)](https://travis-ci.org/yao.li/Coolog)
 [![Version](https://img.shields.io/cocoapods/v/Coolog.svg?style=flat)](https://cocoapods.org/pods/Coolog)
@@ -14,7 +14,8 @@ Coolog is a expandable and flexible log framework for iOS.
 
 * **Expandable** You can even customize your own logger and formatter, which are components of log-driver. Then your customized log-driver can also be added to log-engine. Do whatever you want in your customized logger.
 
-* **Browser Tool** Coolog provides a browser tool, which makes it easy to debug. You just need to open a computer with a browser to debug the program. This is really convenient.
+* **Web Browser Tool** Coolog provides a web browser tool, which makes it easy to debug. You just need to open a computer with a browser to debug the program. This is really convenient.
+
 ![BrowserTool](https://raw.githubusercontent.com/RyanLeeLY/Coolog/master/browserTool.gif)
 
 ## Installation
@@ -57,11 +58,11 @@ CLogDefault(@"tag", @"%@", @"log content");
 CLogDebug(@"tag", @"%@", @"log content");
 ```
 
-### Browser Tool
+### Web Browser Tool
 ```objective-c
 [[COLLogManager sharedInstance] enableRemoteConsole];
 ```
-Make sure your pc and your phone under the same wifi. Open your browser and visit [http://coolog.oss-cn-hangzhou.aliyuncs.com/index.html?host=ws://YourPhoneIPAddr:9001/coolog]
+Make sure your pc and your phone under the same wifi. Open your web browser and visit [http://coolog.oss-cn-hangzhou.aliyuncs.com/index.html?host=ws://YourPhoneIPAddr:9001/coolog]
 
 ### Advanced
 
@@ -130,6 +131,10 @@ COLLoggerDriver *myDriver = [[COLLoggerDriver alloc] initWithLogger:[MyLogger lo
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+## TODO
+* Search and filter function in web browser tool
+* Web browser Tool UI
+* Performance
 
 ## Author
 
