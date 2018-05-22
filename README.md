@@ -112,8 +112,8 @@ The section below will introduce how to customize your own logger. You can follo
 
 @implementation MyLogFormatter
 // The log's format depends on this method.
-- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date thread:(NSThread *)thread {
-    return [NSString stringWithFormat:@"tag=[%zd], type=[%@], message=[%@], date=[%@], thread=[%@]", type, tag, message, date, thread];
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
+    return [NSString stringWithFormat:@"tag=[%zd], type=[%@], message=[%@], date=[%@]", type, tag, message, date];
 }
 @end
 ```
