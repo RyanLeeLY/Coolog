@@ -6,14 +6,13 @@
 //
 
 #import "COLLogFormatter.h"
+#import "COLDateFormatter.h"
 
 static NSString * COLLogALSFormatterString = @"[##TAG:%@##] [##TYPE:%@##] [##DATE:%@##] %@";
 static NSString * COLLogConsoleFormatterString = @"[##TAG:%@##] [##TYPE:%@##] [##DATE:%@##] [##THREAD:%@##] %@";
 static NSString * COLLogFileFormatterString = @"[##TAG:%@##] [##TYPE:%@##] [##DATE:%@##] [##THREAD:%@##] %@";
 
 @interface COLLogFormatter ()
-@property (strong, nonatomic) NSDateFormatter *dateFormatter;
-
 @property (copy, nonatomic) NSArray<NSString *> *tagStrings;
 @end
 
@@ -66,8 +65,6 @@ static inline NSArray * COLLogTypeStringArray() {
     self = [super init];
     if (self) {
         _tagStrings = COLLogTypeStringArray();
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
     }
     return self;
 }
@@ -83,21 +80,21 @@ static inline NSArray * COLLogTypeStringArray() {
 
 @implementation COLLogNSFormatter
 - (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
-    NSString *dateString = [self.dateFormatter stringFromDate:date];
+    NSString *dateString = [[COLDateFormatter sharedInstance] dateStringWithTimeInterval:CFAbsoluteTimeGetCurrent()];
     return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, message];
 }
 @end
 
 @implementation COLLogConsoleFormatter
 - (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
-    NSString *dateString = [self.dateFormatter stringFromDate:date];
+    NSString *dateString = [[COLDateFormatter sharedInstance] dateStringWithTimeInterval:CFAbsoluteTimeGetCurrent()];
     return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, message];
 }
 @end
 
 @implementation COLLogFileFormatter
 - (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
-    NSString *dateString = [self.dateFormatter stringFromDate:date];
+    NSString *dateString = [[COLDateFormatter sharedInstance] dateStringWithTimeInterval:CFAbsoluteTimeGetCurrent()];
     return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, message];
 }
 @end
