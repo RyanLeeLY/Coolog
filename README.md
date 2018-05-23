@@ -10,7 +10,7 @@ Coolog is a expandable and flexible log framework for iOS. It provides a browser
 ## Features
 * **Simple** Coolog has a simple usage. We make it as simple as possible to setup Coolog. Also, we provides some simplified methods of basic function.
 
-* **Flexible** Coolog provides multiple log methods (Console, ASL and File) and log-level. 
+* **Flexible** Coolog provides multiple log methods (Console, NSLog and File) and log-level. 
 
 * **Expandable** You can even customize your own logger and formatter, which are components of log-driver. Then your customized log-driver can also be added to log-engine. Do whatever you want in your customized logger.
 
