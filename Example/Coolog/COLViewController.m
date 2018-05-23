@@ -47,9 +47,9 @@
 //
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self logTimeTakenToRunBlock:^{
-            for (int i=0; i<10000; i++) {
+            for (int i=0; i<100; i++) {
 //                NSLog(@"tag %@ %@ %@", [message description], [NSThread currentThread], [NSDate date]);
-                CLogE(@"%@", @"ss");
+                CLogE(@"%@", @"test");
             }
         } withPrefix:@"LOG in global thread"];
     });
@@ -61,9 +61,9 @@
 
 - (void)logTimeTakenToRunBlock:(void(^)(void))block withPrefix:(NSString *)prefixString {
     
-    double a = CFAbsoluteTimeGetCurrent();
+    double a = CACurrentMediaTime();
     block();
-    double b = CFAbsoluteTimeGetCurrent();
+    double b = CACurrentMediaTime();
     
     unsigned int m = ((b-a) * 1000.0f); // convert from seconds to milliseconds
     
