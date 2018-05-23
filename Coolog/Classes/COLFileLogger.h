@@ -9,23 +9,16 @@
 #import "COLLogger.h"
 
 @interface COLFileLogger : NSObject <COLLogger>
-/**
- Default value is 500.
- L2Cache(NSString) -> L1Cache(NSData) -> File
- */
-@property (assign, nonatomic) NSInteger maxL2CacheSize;
 
 /**
- Default value is 5000.
- L2Cache(NSString) -> L1Cache(NSData) -> File
+ Default value is 1024 * 256 Bytes.
  */
-@property (assign, nonatomic) NSInteger maxL1CacheSize;
+@property (assign, nonatomic) NSInteger maxCacheSize;
 
 /**
  Bytes. Default value is 1024*1024*30 bytes.
  */
 @property (assign, nonatomic) unsigned long long maxSingleFileSize;
-
 
 /**
  Init method.

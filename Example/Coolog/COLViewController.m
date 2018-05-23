@@ -38,16 +38,17 @@
 //            }
 //        } withPrefix:@"LOG in main thread"];
 //    });
-//
-//    for (int i=0; i<2; i++) {
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    
+//    dispatch_queue_t queue = dispatch_queue_create("com.coolog.test", NULL);
+//    for (int i=0; i<100; i++) {
+//        dispatch_async(queue, ^{
 //            CLogInfo(@"tag", @"%@", [message description]);
 //        });
 //    }
-//
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self logTimeTakenToRunBlock:^{
-            for (int i=0; i<100; i++) {
+            for (int i=0; i<10000; i++) {
 //                NSLog(@"tag %@ %@ %@", [message description], [NSThread currentThread], [NSDate date]);
                 CLogE(@"%@", @"test");
             }

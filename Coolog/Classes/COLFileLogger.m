@@ -8,8 +8,7 @@
 #import "COLFileLogger.h"
 #import <unistd.h>
 
-static const NSInteger COLFileLoggerDefaultMaxL2CacheSize = 1024 * 16;
-static const NSInteger COLFileLoggerDefaultMaxL1CacheSize = 1024 * 256;
+static const NSInteger COLFileLoggerDefaultMaxCacheSize = 1024 * 256;
 static const NSInteger COLFileLoggerDefaultMaxSingleFileSize = 1024 * 1024 * 100;
 static NSString * const COLFileLoggerDefaultDirectoryPath = @"coolog";
 static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
@@ -19,6 +18,7 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 }
 @property (copy, nonatomic) NSString *rootDirectoryPath;
 @property (assign, nonatomic) NSUInteger storagedDay;
+@property (assign, nonatomic) NSInteger maxL2CacheSize;
 
 @property (strong, nonatomic) NSMutableData *logL1Cache;
 @property (strong, nonatomic) NSMutableString *logL2Cache;
@@ -48,8 +48,8 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
         _loggerQueue.qualityOfService = NSQualityOfServiceBackground;
         _loggerFileQueue = dispatch_queue_create("com.coolog.loggerFileQueue", NULL);
         _loggerCacheQueue = dispatch_queue_create("com.coolog.loggerCacheQueue", NULL);
-        _maxL2CacheSize = COLFileLoggerDefaultMaxL2CacheSize;
-        _maxL1CacheSize = COLFileLoggerDefaultMaxL1CacheSize;
+        _maxL2CacheSize = COLFileLoggerDefaultMaxCacheSize / 16;
+        _maxCacheSize = COLFileLoggerDefaultMaxCacheSize;
         _maxSingleFileSize = COLFileLoggerDefaultMaxSingleFileSize;
         
         _logL1Cache = [[NSMutableData alloc] init];
@@ -106,7 +106,7 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
             [self.logL1Condition lock];
             [self.logL1Cache appendData:[savedLogs dataUsingEncoding:NSUTF8StringEncoding]];
             
-            if (self.logL1Cache.length >= self.maxL1CacheSize) {
+            if (self.logL1Cache.length >= self.maxCacheSize) {
                 [self.logL1Condition signal];
             }
             [self.logL1Condition unlock];
@@ -130,7 +130,7 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
     while (1) {
         @autoreleasepool {
             [self.logL1Condition lock];
-            if (self.logL1Cache.length < self.maxL1CacheSize) {
+            if (self.logL1Cache.length < self.maxCacheSize) {
                 [self.logL1Condition wait];
             }
             NSData *savedLogsData = [self.logL1Cache copy];

@@ -10,8 +10,6 @@
 #import <os/log.h>
 
 @implementation MyLogger
-@synthesize formatterClass = _formatterClass;
-
 + (instancetype)logger {
     return [[MyLogger alloc] init];
 }
