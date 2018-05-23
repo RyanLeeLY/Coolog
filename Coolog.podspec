@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   A expandable log framework for iOS.
                        DESC
 
-  s.homepage         = 'https://github.com/yao.li/Coolog'
+  s.homepage         = 'https://github.com/RyanLeeLY/Coolog'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'yao.li' => 'yao.li@cootek.cn' }
   s.source           = { :git => 'https://github.com/RyanLeeLY/Coolog.git', :tag => s.version.to_s }
