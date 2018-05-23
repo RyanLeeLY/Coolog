@@ -110,11 +110,15 @@
 
 #pragma mark - notification
 - (void)applicationEnterForeground:(NSNotification *)notification {
-    [self startRemoteLogger];
+    if (self.remoteEnabled) {
+        [self startRemoteLogger];
+    }
 }
 
 - (void)applicationEnterBackground:(NSNotification *)notification {
-    [self stopRemoteLogger];
+    if (self.remoteEnabled) {
+        [self stopRemoteLogger];
+    }
 }
 
 #pragma mark - getter & setter

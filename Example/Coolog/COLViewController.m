@@ -49,7 +49,7 @@
         [self logTimeTakenToRunBlock:^{
             for (int i=0; i<10000; i++) {
 //                NSLog(@"tag %@ %@ %@", [message description], [NSThread currentThread], [NSDate date]);
-                CLogE(@"%@", [message description]);
+                CLogE(@"%@", @"ss");
             }
         } withPrefix:@"LOG in global thread"];
     });
