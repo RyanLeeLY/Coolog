@@ -28,5 +28,5 @@ typedef NS_ENUM(NSUInteger, COLLogLevel) {
                      formatter:(id<COLFormatable>)formatter
                          level:(COLLogLevel)level NS_DESIGNATED_INITIALIZER;
 
-- (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date;
+- (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message timeInterval:(NSTimeInterval)timeInterval;
 @end

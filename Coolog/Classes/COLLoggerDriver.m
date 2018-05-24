@@ -27,9 +27,9 @@
     return [self initWithLogger:[COLNSLogger logger] formatter:[COLLogFormatter NSLogFormatter] level:COLLogLevelDefault];
 }
 
-- (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
+- (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message timeInterval:(NSTimeInterval)timeInterval {
     if ((NSInteger)type < (NSInteger)self.level) {
-        [self.logger log:[self.formatter completeLogWithType:type tag:tag message:message date:date]];
+        [self.logger log:[self.formatter completeLogWithType:type tag:tag message:message timeInterval:timeInterval]];
     }
 }
 @end

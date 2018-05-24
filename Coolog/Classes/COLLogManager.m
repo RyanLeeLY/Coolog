@@ -46,7 +46,7 @@
 }
 
 - (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message {
-    [self.logEngine logWithType:type tag:tag message:message date:[NSDate date]];
+    [self.logEngine logWithType:type tag:tag message:message timeInterval:CFAbsoluteTimeGetCurrent()];
 }
 
 - (void)enableNSLog {

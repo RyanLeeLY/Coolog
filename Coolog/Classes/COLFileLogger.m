@@ -9,7 +9,7 @@
 #import <unistd.h>
 
 static const NSInteger COLFileLoggerDefaultMaxCacheSize = 1024 * 256;
-static const NSInteger COLFileLoggerDefaultMaxSingleFileSize = 1024 * 1024 * 100;
+static const NSInteger COLFileLoggerDefaultMaxSingleFileSize = 1024 * 1024 * 50;
 static NSString * const COLFileLoggerDefaultDirectoryPath = @"coolog";
 static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 
@@ -23,9 +23,8 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 @property (strong, nonatomic) NSMutableData *logL1Cache;
 @property (strong, nonatomic) NSMutableString *logL2Cache;
 
-@property (strong, nonatomic) NSOperationQueue *loggerQueue;
-@property (strong, nonatomic) dispatch_queue_t loggerFileQueue;
 @property (strong, nonatomic) dispatch_queue_t loggerCacheQueue;
+@property (strong, nonatomic) dispatch_queue_t loggerFileQueue;
 @property (strong, nonatomic) NSLock *fileHandleLock;
 
 @property (strong, nonatomic) NSCondition *logL2Condition;
@@ -43,9 +42,6 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
     if (self) {
         _rootDirectoryPath = path;
         _storagedDay = storagedDay;
-        _loggerQueue = [[NSOperationQueue alloc] init];
-        _loggerQueue.maxConcurrentOperationCount = 1;
-        _loggerQueue.qualityOfService = NSQualityOfServiceBackground;
         _loggerFileQueue = dispatch_queue_create("com.coolog.loggerFileQueue", NULL);
         _loggerCacheQueue = dispatch_queue_create("com.coolog.loggerCacheQueue", NULL);
         _maxL2CacheSize = COLFileLoggerDefaultMaxCacheSize / 16;
@@ -78,17 +74,13 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 }
 
 - (void)log:(NSString *)logString {
-    __weak typeof(self) _self = self;
-    [self.loggerQueue addOperationWithBlock:^{
-        __strong typeof(_self) self = _self;
-        [self.logL2Condition lock];
-        [self.logL2Cache appendFormat:@"%@\n", logString];
-        
-        if (self.logL2Cache.length >= self.maxL2CacheSize) {
-            [self.logL2Condition signal];
-        }
-        [self.logL2Condition unlock];
-    }];
+    [self.logL2Condition lock];
+    [self.logL2Cache appendFormat:@"%@\n", logString];
+    
+    if (self.logL2Cache.length >= self.maxL2CacheSize) {
+        [self.logL2Condition signal];
+    }
+    [self.logL2Condition unlock];
 }
 
 - (void)transferCacheTask {
@@ -99,17 +91,11 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
             if (self.logL2Cache.length < self.maxL2CacheSize) {
                 [self.logL2Condition wait];
             }
-            NSString *savedLogs = [self.logL2Cache copy];
+            NSString *logString = [self.logL2Cache copy];
             [self.logL2Cache setString:@""];
             [self.logL2Condition unlock];
             
-            [self.logL1Condition lock];
-            [self.logL1Cache appendData:[savedLogs dataUsingEncoding:NSUTF8StringEncoding]];
-            
-            if (self.logL1Cache.length >= self.maxCacheSize) {
-                [self.logL1Condition signal];
-            }
-            [self.logL1Condition unlock];
+            [self writeToCacheWithLogString:logString];
         }
     }
 }
@@ -117,12 +103,19 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
 - (void)triggerTransferCache {
     [self.logL2Condition lock];
     
-    NSString *savedLogs = [self.logL2Cache copy];
+    NSString *logString = [self.logL2Cache copy];
     [self.logL2Cache setString:@""];
     [self.logL2Condition unlock];
     
+    [self writeToCacheWithLogString:logString];
+}
+
+- (void)writeToCacheWithLogString:(NSString *)logs {
     [self.logL1Condition lock];
-    [self.logL1Cache appendData:[savedLogs dataUsingEncoding:NSUTF8StringEncoding]];
+    [self.logL1Cache appendData:[logs dataUsingEncoding:NSUTF8StringEncoding]];
+    if (self.logL1Cache.length >= self.maxCacheSize) {
+        [self.logL1Condition signal];
+    }
     [self.logL1Condition unlock];
 }
 
@@ -137,21 +130,7 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
             [self.logL1Cache setData:[NSData data]];
             [self.logL1Condition unlock];
             
-            NSString *fileName = COLFileLoggerFileName();
-            [self.fileHandleLock lock];
-            NSFileHandle *fileHandle = [self fileHandleWithDirctoryPath:self.rootDirectoryPath fileName:fileName];
-            [fileHandle seekToEndOfFile];
-            
-            [fileHandle writeData:savedLogsData];
-            
-            unsigned long long fsize = [fileHandle seekToEndOfFile];
-            [fileHandle closeFile];
-            
-            NSError *error = NULL;
-            if (fsize > self.maxSingleFileSize) {
-                [self moveLogFiletoTrash:fileName error:&error];
-            }
-            [self.fileHandleLock unlock];
+            [self writingToFileWithData:savedLogsData];
         }
     }
 }
@@ -162,21 +141,32 @@ static NSString * const COLFileLoggerDefaultTrashDirectoryPath = @"trash";
     [self.logL1Cache setData:[NSData data]];
     [self.logL1Condition unlock];
     
-    if (savedLogsData.length == 0) {
+    [self writingToFileWithData:savedLogsData];
+}
+
+- (void)writingToFileWithData:(NSData *)data {
+    if (data.length == 0) {
         return;
     }
     
     NSString *fileName = COLFileLoggerFileName();
     [self.fileHandleLock lock];
     NSFileHandle *fileHandle = [self fileHandleWithDirctoryPath:self.rootDirectoryPath fileName:fileName];
-    [fileHandle seekToEndOfFile];
+    if (!fileHandle) {
+        return;
+    }
     
-    [fileHandle writeData:savedLogsData];
+    @try {
+        [fileHandle seekToEndOfFile];
+        [fileHandle writeData:data];
+    } @catch(NSException *e) {
+        NSLog(@"Coolog writingToFileWithData Exception=[%@]", e);
+    }
     
     unsigned long long fsize = [fileHandle seekToEndOfFile];
     [fileHandle closeFile];
     
-    NSError *error = NULL;
+    NSError *error;
     if (fsize > self.maxSingleFileSize) {
         [self moveLogFiletoTrash:fileName error:&error];
     }
@@ -224,10 +214,15 @@ static inline NSArray * COLFileLoggerFileNamesWithDateStrings(NSArray *dateStrin
         [fileManager createDirectoryAtPath:rootPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
     BOOL filePathExisted = [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDirectory];
+    NSError *error;
     if (isDirectory || !filePathExisted) {
-        [[NSData data] writeToURL:[NSURL fileURLWithPath:filePath] atomically:YES];
+        [[NSData data] writeToURL:[NSURL fileURLWithPath:filePath] options:NSDataWritingAtomic error:&error];
     }
-    return [NSFileHandle fileHandleForUpdatingAtPath:filePath];
+    if (error) {
+        return nil;
+    } else {
+        return [NSFileHandle fileHandleForUpdatingAtPath:filePath];
+    }
 }
 
 - (BOOL)moveLogFiletoTrash:(NSString *)fileName error:(NSError **)error {

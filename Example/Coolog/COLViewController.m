@@ -20,9 +20,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    COLLoggerDriver *myDriver = [[COLLoggerDriver alloc] initWithLogger:[MyLogger logger]
-                                                              formatter:[[MyLogFormatter alloc] init]
-                                                                  level:COLLogLevelInfo];
+//    COLLoggerDriver *myDriver = [[COLLoggerDriver alloc] initWithLogger:[MyLogger logger]
+//                                                              formatter:[[MyLogFormatter alloc] init]
+//                                                                  level:COLLogLevelInfo];
 //    [[COLLogManager sharedInstance].logEngine addDriver:myDriver];
 }
 
@@ -39,11 +39,18 @@
 //        } withPrefix:@"LOG in main thread"];
 //    });
     
-//    dispatch_queue_t queue = dispatch_queue_create("com.coolog.test", NULL);
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    queue.maxConcurrentOperationCount = 10;    
 //    for (int i=0; i<100; i++) {
-//        dispatch_async(queue, ^{
+//        [queue addOperationWithBlock:^{
 //            CLogInfo(@"tag", @"%@", [message description]);
-//        });
+//        }];
+//        [queue addOperationWithBlock:^{
+//            CLogError(@"tag", @"%@", [message description]);
+//        }];
+//        [queue addOperationWithBlock:^{
+//            CLogWarning(@"tag", @"%@", [message description]);
+//        }];
 //    }
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

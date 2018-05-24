@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, COLLogType) {
 - (NSString *)completeLogWithType:(COLLogType)type
                               tag:(NSString *)tag
                           message:(NSString *)message
-                             date:(NSDate *)date;
+                     timeInterval:(NSTimeInterval)timeInterval;
 @end
 
 @interface COLLogFormatter : NSObject <COLFormatable>

@@ -69,7 +69,7 @@ static inline NSArray * COLLogTypeStringArray() {
     return self;
 }
 
-- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message timeInterval:(NSTimeInterval)timeInterval {
     return nil;
 }
 
@@ -79,22 +79,22 @@ static inline NSArray * COLLogTypeStringArray() {
 @end
 
 @implementation COLLogNSFormatter
-- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
-    NSString *dateString = [[COLDateFormatter sharedInstance] dateStringWithTimeInterval:CFAbsoluteTimeGetCurrent()];
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message timeInterval:(NSTimeInterval)timeInterval {
+    NSString *dateString = [[COLDateFormatter sharedInstance] dateStringWithTimeInterval:timeInterval];
     return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, message];
 }
 @end
 
 @implementation COLLogConsoleFormatter
-- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
-    NSString *dateString = [[COLDateFormatter sharedInstance] dateStringWithTimeInterval:CFAbsoluteTimeGetCurrent()];
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message timeInterval:(NSTimeInterval)timeInterval {
+    NSString *dateString = [[COLDateFormatter sharedInstance] dateStringWithTimeInterval:timeInterval];
     return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, message];
 }
 @end
 
 @implementation COLLogFileFormatter
-- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
-    NSString *dateString = [[COLDateFormatter sharedInstance] dateStringWithTimeInterval:CFAbsoluteTimeGetCurrent()];
+- (NSString *)completeLogWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message timeInterval:(NSTimeInterval)timeInterval {
+    NSString *dateString = [[COLDateFormatter sharedInstance] dateStringWithTimeInterval:timeInterval];
     return [NSString stringWithFormat:COLLogALSFormatterString, tag, [self typeStringWithType:type], dateString, message];
 }
 @end

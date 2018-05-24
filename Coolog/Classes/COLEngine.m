@@ -12,7 +12,6 @@
 #import "COLConsoleLogger.h"
 #import "COLFileLogger.h"
 #import "COLLogger.h"
-#import <pthread.h>
 
 @interface COLEngine ()
 @property (strong, nonatomic) NSMutableArray<COLLoggerDriver *> *drivers;
@@ -45,9 +44,9 @@
     }
 }
 
-- (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message date:(NSDate *)date {
+- (void)logWithType:(COLLogType)type tag:(NSString *)tag message:(NSString *)message timeInterval:(NSTimeInterval)timeInterval {
     [self.drivers enumerateObjectsUsingBlock:^(COLLoggerDriver * _Nonnull driver, NSUInteger idx, BOOL * _Nonnull stop) {
-        [driver logWithType:type tag:tag message:message date:date];
+        [driver logWithType:type tag:tag message:message timeInterval:timeInterval];
     }];
 }
 @end
