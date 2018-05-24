@@ -8,11 +8,11 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Coolog'
-  s.version          = '0.2.2'
-  s.summary          = 'A short description of Coolog.'
+  s.version          = '0.3.0'
+  s.summary          = 'Coolog is a'
 
   s.description      = <<-DESC
-  A expandable log framework for iOS.
+  Coolog is a expandable and flexible log framework for iOS.
                        DESC
 
   s.homepage         = 'https://github.com/RyanLeeLY/Coolog'
