@@ -6,7 +6,7 @@
     <span style="color:grey" v-if="this.searchText.length>0" v-bind:style="searchSpanStyle">{{this.searchItems.length + ' logs contains "' + this.searchText + '"'}}</span>
     <div class="listWrap" ref="listWrap">
       <virtual-list ref="vsl" class="list" :start="startIndex" :variable="getVariableHeight" 
-      :size="78" 
+      :size="75" 
       :remain="7">
         <item
           v-for="(item, index) of filterItems" 
@@ -14,7 +14,8 @@
           :index="index"
           :height="item.height"
           :content="item.content"
-          :textStyle="item.textStyle"> 
+          :textStyle="item.textStyle"
+          :backgroundColor="item.backgroundColor"> 
         </item>
       </virtual-list>
     </div>
@@ -51,6 +52,8 @@ export default {
       isSocketOn: false,
       isSocketConnecting: false,
       startIndex: 0,
+      currentSearchItemIndex: -1,
+      currentSearchItem: null,
 
       filterText: '',
       searchText: '',
@@ -62,8 +65,12 @@ export default {
   },
 
   watch: {
-    searchText: function (val) {
-      this.searchSpanStyle.visibility = 'hidden';
+    searchText: function (newVal, oldVal) {
+      if (newVal != oldVal) {
+        this.searchSpanStyle.visibility = 'hidden';
+        this.searchItems = new Array();
+        this.currentSearchItemIndex = -1;
+      }
     }
   },
 
@@ -76,6 +83,7 @@ export default {
 
   methods: {
     getVariableHeight (index) {
+      // return true;
       let target = this.items[index];
       return target.height;
     },
@@ -102,7 +110,7 @@ export default {
         this.removeWebSocketListener();
       };
       this.$options.sockets.onmessage =  function (evt) {
-        let rowHeight = 15 * Math.ceil((evt.data.length / 134)+1);
+        let rowHeight = 15 * Math.ceil((getStringLength(evt.data) / 219)+1);
         let type = evt.data.match(/\[##TYPE:(\S*)##\]/)[1];
         var textColor = '#000000';
         if (type === 'Debug') {
@@ -115,9 +123,11 @@ export default {
           textColor = '#FF0000';
         }
         let itm = {
+          index: this.items.length,
           height: rowHeight,
           content: evt.data,
-          textStyle: 'color:'+textColor
+          textStyle: 'color:'+textColor,
+          backgroundColor: 'white',
         };
         this.items.push(itm);
         this.startIndex = this.items.length;
@@ -141,15 +151,33 @@ export default {
       }
       this.searchSpanStyle.visibility = 'visible';
       this.searchItems = this.getSearchItems();
+
+      if (this.currentSearchItem != null) {
+        this.currentSearchItem.backgroundColor = 'white';
+        this.currentSearchItem = null;
+      }
+
       if (this.searchItems.length > 0) {
-        this.startIndex = this.searchItems[0].index;
-        // var searchInnerHTML = this.$refs.listWrap.innerHTML;
-        // let re = new RegExp(this.searchText+'(?![^<>]*>)', 'g');
-        // this.$refs.listWrap.innerHTML = searchInnerHTML.replace(re, '<span style="color:#0f0;background-color:#ff0">'+this.searchText+'</span>');
+        if (this.currentSearchItemIndex >= 0) {
+          this.currentSearchItemIndex += 1;
+        } else {
+          this.currentSearchItemIndex = 0;
+        }
+        if (this.currentSearchItemIndex>=this.searchItems.length) {
+            this.currentSearchItemIndex = 0;
+        }
+        this.searchItems[this.currentSearchItemIndex].backgroundColor = '#FFFFE0';
+        this.currentSearchItem = this.searchItems[this.currentSearchItemIndex];
+        setTimeout(() => {
+          this.startIndex = this.searchItems[this.currentSearchItemIndex].index;
+        }, 0);
       }
     },
 
     getSearchItems () {
+      if (this.searchText == null || this.searchText.length === 0) {
+        return new Array();
+      }
       var searchItems = this.filterItems;
       searchItems = searchItems.filter(this.itemSearcher);
       return searchItems;
@@ -163,6 +191,18 @@ export default {
       return (item.content.indexOf(this.searchText) != -1);
     }
   }
+}
+
+function getStringLength(str) {
+  var realLength = 0, len = str.length, charCode = -1;
+  for (var i = 0; i < len; i++) {
+    charCode = str.charCodeAt(i);
+    if (charCode >= 0 && charCode <= 128) 
+       realLength += 1;
+    else
+       realLength += 2;
+  }
+  return realLength;
 }
 
 function getQueryString(name) {  
@@ -190,7 +230,7 @@ function getQueryString(name) {
     }
 
     .list {
-      ackground: #fff;
+      background-color: #fff;
       border-radius: 3px;
       border: 1px solid #ddd;
       -webkit-overflow-scrolling: touch;

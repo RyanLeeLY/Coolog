@@ -28,7 +28,7 @@
 
 - (IBAction)buttonOnTapped:(UIButton *)sender {
     NSMutableArray *message = [NSMutableArray array];
-    for (int i=0; i<10; i++) {
+    for (int i=0; i<100; i++) {
         [message addObject:[NSString stringWithFormat:@"value%@", @(i)]];
     }
 //    dispatch_async(dispatch_get_main_queue(), ^{
@@ -43,7 +43,7 @@
     queue.maxConcurrentOperationCount = 10;
     for (int i=0; i<1; i++) {
         [queue addOperationWithBlock:^{
-            CLogInfo(@"tag", @"%@", [message description]);
+            CLogInfo(@"标签标", @"%@", [message description]);
         }];
         [queue addOperationWithBlock:^{
             CLogError(@"tag", @"%@", [message description]);
