@@ -5,9 +5,12 @@
     <input type="text" class="search" v-model="searchText" v-on:keypress="searchInputKeypressed" placeholder="search">
     <span style="color:grey" v-if="this.searchText.length>0" v-bind:style="searchSpanStyle">{{this.searchItems.length + ' logs contains "' + this.searchText + '"'}}</span>
     <div class="listWrap" ref="listWrap">
-      <virtual-list ref="vsl" class="list" :start="startIndex" :variable="getVariableHeight" 
+      <virtual-list ref="vsl" class="list" 
+      :start="startIndex" 
+      :variable="getVariableHeight" 
       :size="75" 
-      :remain="7">
+      :remain="7"
+      :bench="40">
         <item
           v-for="(item, index) of filterItems" 
           :key="index"
@@ -67,23 +70,26 @@ export default {
   watch: {
     searchText: function (newVal, oldVal) {
       if (newVal != oldVal) {
-        this.searchSpanStyle.visibility = 'hidden';
-        this.searchItems = new Array();
-        this.currentSearchItemIndex = -1;
+        this.resetSearch();
       }
-    }
+    },
+    filterText: function (newVal, oldVal) {
+      if (newVal != oldVal) {
+        this.resetSearch();
+      }
+    },
   },
 
   computed: {
     filterItems: function () {
       var filterItems = this.items;
-      return filterItems.filter(this.itemFilter);
+      filterItems = filterItems.filter(this.itemFilter);
+      return filterItems;
     },
   },
 
   methods: {
     getVariableHeight (index) {
-      // return true;
       let target = this.items[index];
       return target.height;
     },
@@ -167,10 +173,10 @@ export default {
             this.currentSearchItemIndex = 0;
         }
         this.searchItems[this.currentSearchItemIndex].backgroundColor = '#FFFFE0';
+        let offset = this.$refs.vsl.getVarOffset(this.searchItems[this.currentSearchItemIndex].index, true);
+        // alert('index:'+this.searchItems[this.currentSearchItemIndex].index+', offset:'+offset);
+        this.$refs.vsl.setScrollTop(offset);
         this.currentSearchItem = this.searchItems[this.currentSearchItemIndex];
-        setTimeout(() => {
-          this.startIndex = this.searchItems[this.currentSearchItemIndex].index;
-        }, 0);
       }
     },
 
@@ -178,7 +184,14 @@ export default {
       if (this.searchText == null || this.searchText.length === 0) {
         return new Array();
       }
+      
+      this.filterItems = new Array();
       var searchItems = this.filterItems;
+      if (this.items.length !==  searchItems.length) {
+        for (var i=0, len=searchItems.length;i<len;i++) {
+          searchItems[i].index = i;
+        }
+      }
       searchItems = searchItems.filter(this.itemSearcher);
       return searchItems;
     },
@@ -189,6 +202,12 @@ export default {
 
     itemSearcher (item) {
       return (item.content.indexOf(this.searchText) != -1);
+    },
+
+    resetSearch () {
+      this.searchSpanStyle.visibility = 'hidden';
+      this.searchItems = new Array();
+      this.currentSearchItemIndex = -1;
     }
   }
 }
