@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Coolog'
-  s.version          = '0.3.0'
+  s.version          = '0.3.1'
   s.summary          = 'Coolog is a'
 
   s.description      = <<-DESC
