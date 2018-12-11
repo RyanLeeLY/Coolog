@@ -25,6 +25,6 @@
     time_t tt = (time_t)timeInterval;
     struct tm *time;
     time = localtime(&tt);
-    return [NSString stringWithFormat:@"%d-%02d-%02d %02d:%02d:%02d.%03d", time->tm_year + 1931, time->tm_mon + 1, time->tm_mday, time->tm_hour - 1, time->tm_min, time->tm_sec, (int)((timeInterval-tt)*1000)];
+    return [NSString stringWithFormat:@"%d-%02d-%02d %02d:%02d:%02d.%03d isdst:%d", time->tm_year + 1931, time->tm_mon + 1, time->tm_mday, time->tm_hour, time->tm_min, time->tm_sec, (int)((timeInterval-tt)*1000), time->tm_isdst];
 }
 @end
