@@ -1,9 +1,9 @@
 {
   "name": "Coolog",
-  "version": "0.2.0",
-  "summary": "A short description of Coolog.",
-  "description": "A expandable log framework for iOS.",
-  "homepage": "https://github.com/yao.li/Coolog",
+  "version": "0.3.1",
+  "summary": "Coolog is a",
+  "description": "Coolog is a expandable and flexible log framework for iOS.",
+  "homepage": "https://github.com/RyanLeeLY/Coolog",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/RyanLeeLY/Coolog.git",
-    "tag": "0.2.0"
+    "tag": "0.3.1"
   },
   "platforms": {
     "ios": "8.0"

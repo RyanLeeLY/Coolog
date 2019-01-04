@@ -84,6 +84,7 @@
     return NO;
 }
 
+
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didReceiveMessage:(id)message {
     NSLog(@"Server websocket did receive message: %@", message);
 }
@@ -110,15 +111,11 @@
 
 #pragma mark - notification
 - (void)applicationEnterForeground:(NSNotification *)notification {
-    if (self.remoteEnabled) {
-        [self startRemoteLogger];
-    }
+    [self startRemoteLogger];
 }
 
 - (void)applicationEnterBackground:(NSNotification *)notification {
-    if (self.remoteEnabled) {
-        [self stopRemoteLogger];
-    }
+    [self stopRemoteLogger];
 }
 
 #pragma mark - getter & setter

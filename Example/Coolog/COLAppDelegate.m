@@ -16,6 +16,7 @@
     [[COLLogManager sharedInstance] setup];
     [[COLLogManager sharedInstance] enableFileLog];
     [[COLLogManager sharedInstance] enableConsoleLog];
+    [[COLLogManager sharedInstance] enableRemoteConsole];
 //    [[COLLogManager sharedInstance] enableNSLog];
 #ifdef DEBUG
     [COLLogManager sharedInstance].level = COLLogLevelAll;

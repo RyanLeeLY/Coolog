@@ -1,5 +1,5 @@
 PODS:
-  - Coolog (0.2.0):
+  - Coolog (0.3.1):
     - PocketSocket
   - PocketSocket (1.0.1):
     - PocketSocket/Client (= 1.0.1)
@@ -15,7 +15,7 @@ DEPENDENCIES:
   - Coolog (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - PocketSocket
 
 EXTERNAL SOURCES:
@@ -23,9 +23,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Coolog: d2be65910d99b5d9b5b55afab30dde43fbf5c900
+  Coolog: b692a6a317cab18274a19ece09fd5be7bb6acde1
   PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
 
 PODFILE CHECKSUM: 627792d81617edd766034b1a3e3ea6e970d89025
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3
