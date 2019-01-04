@@ -104,10 +104,10 @@
 }
 
 - (void)server:(PSWebSocketServer *)server webSocket:(PSWebSocket *)webSocket didFailWithError:(NSError *)error {
+    NSLog(@"Socket webSocket didFailWithError: %@", error);
     dispatch_semaphore_wait(_clientsSemaphore, DISPATCH_TIME_FOREVER);
     [webSocket close];
     [self.clients removeObject:webSocket];
-    NSLog(@"Socket webSocket didFailWithError: %@", error);
     dispatch_semaphore_signal(_clientsSemaphore);
 }
 
