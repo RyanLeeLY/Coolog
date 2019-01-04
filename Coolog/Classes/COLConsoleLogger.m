@@ -62,6 +62,7 @@
 
 - (void)server:(PSWebSocketServer *)server didFailWithError:(NSError *)error {
     self.remoteEnabled = NO;
+    NSLog(@"Socket didFailWithError: %@", error);
 }
 
 - (void)serverDidStop:(PSWebSocketServer *)server {
